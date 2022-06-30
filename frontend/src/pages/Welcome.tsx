@@ -1,37 +1,64 @@
-import React, {useState} from "react";
+import { Feather } from "@expo/vector-icons";
+import React from "react";
 //Armazenando os estados co useState..
-import {SafeAreaView, Text, View, Image, TouchableOpacity, StyleSheet } from "react-native"; 
+/*expo install @expo/vector-icons
+Depencia para fazer uso dos Icons 
+*/
+import {SafeAreaView,
+     Text,
+     Image,
+     TouchableOpacity,
+     StyleSheet,
+    Dimensions,     
+    View
+    } from "react-native"; 
 //TouchableOpacity esse ele faz um feito de opacidade quando ele eh precionado.
 import logoIgm from '../assets/logo.png';
-import { Button } from "../components/Button";
+
 import colors from "../styles/colors";
+import fonts from "../styles/fonts";
 
 export function Welcome(){
-    const [visible, setVisible] = useState(false);
+    //const [visible, setVisible] = useState(false);
     
     function handleVisibility(){
-        setVisible(true)
+      //  setVisible(true)
         //essa função eh responsável por seta a image da logo quando o 
         //Button for presionado.
     }
 
     return(
         <SafeAreaView style={styles.container}>
-            
-        
-            <Text style={styles.title}>
-            Gerencie {'\n'}seu dia a dia de {'\n'}forma fácil.
-            </Text>
-            {
-            visible &&
-            <Image source={logoIgm} style={styles.image}/>
-            }
-            <Text style={styles.subtitle}>
-            Nós cuidamos de lembrar você
-            sempre que precisar.
-            </Text>
+                <View style={styles.wapper}>
+                    <Text style={styles.title}>
+                    Gerencie {'\n'}seu dia a dia de {'\n'}forma fácil.
+                    </Text>
+                
+                    <Image source={logoIgm} 
+                    style={styles.image}
+                    resizeMode="contain"
+                    />
+                    
+                    <Text style={styles.subtitle}>
+                    Nós cuidamos de lembrar você
+                    sempre que precisar.
+                    </Text>
 
-            <Button title=">"/>
+                    <TouchableOpacity style={styles.button}
+                activeOpacity={0.7}
+            
+                >
+                <Text>
+                    <Feather name="chevron-right"
+                    style = {styles.buttonIcon}
+                    >
+
+                    </Feather>
+                </Text>
+            
+            
+                    </TouchableOpacity>
+                </View>
         </SafeAreaView>
     )
 
@@ -42,22 +69,31 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
 
     }, 
+    wapper:{
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+        paddingHorizontal: 20
+    },
     title:{
-        fontSize: 32,
+        fontSize: 28,
         fontWeight: 'bold',
         textAlign: 'center', 
         color: colors.blue,
-        marginTop: 38
+        marginTop: 38,
+        fontFamily: fonts.heading,
+        lineHeight: 34
         
     },
     subtitle:{
         textAlign: 'center',
         fontSize: 18,
         paddingHorizontal: 20,
-        color: colors.blue
+        color: colors.blue,
+        fontFamily: fonts.heading
         
     },
     button:{
@@ -68,12 +104,17 @@ const styles = StyleSheet.create({
         borderRadius:16,
         marginBottom:10,
         height:56,
-        paddingHorizontal: 10
+        width: 56,
+        
         
     },
 
-    image:{
-        width: 292,
-        height: 284
-    }
+   
+    buttonIcon:{
+        color:colors.white,
+         fontSize: 30
+
+    }, image:{
+       height: Dimensions.get('window').width*0.7
+    },
 });
