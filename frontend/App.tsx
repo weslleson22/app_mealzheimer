@@ -7,6 +7,8 @@ import { useFonts,
 } from "@expo-google-fonts/jost";
 import AppLoading from 'expo-app-loading';
 import { UserIdentification } from "./src/pages/UserIdentification";
+import { Confirmation } from "./src/pages/Confirmations";
+
 /*
 expo install expo-app-loading vai ajuda a segurar a tela de splash até a fonte ser carregada.
 
@@ -24,7 +26,8 @@ export default function App(){
 
   return(
    //<Welcome/>
-    <UserIdentification/>
+   //<UserIdentification/>
+   <Confirmation/>
   )
 }
 
