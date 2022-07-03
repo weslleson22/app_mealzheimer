@@ -1,4 +1,5 @@
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 //Armazenando os estados co useState..
 /*expo install @expo/vector-icons
@@ -20,6 +21,11 @@ import fonts from "../styles/fonts";
 
 export function Welcome(){
     //const [visible, setVisible] = useState(false);
+    const navigation = useNavigation();
+
+    function handleStart(){
+        navigation.navigate("UserIdentification");
+    }
     
     function handleVisibility(){
       //  setVisible(true)
@@ -46,6 +52,8 @@ export function Welcome(){
 
                     <TouchableOpacity style={styles.button}
                 activeOpacity={0.7}
+                
+                onPress={handleStart}
             
                 >
                 <Text>

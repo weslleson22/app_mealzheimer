@@ -1,4 +1,5 @@
 import { Jost_100Thin_Italic } from "@expo-google-fonts/jost";
+import { NavigationContainerRefContext, useNavigation } from "@react-navigation/native";
 import React, { useState } from "react";
 import { 
     SafeAreaView,
@@ -29,6 +30,12 @@ export function UserIdentification(){
     function handleInputChange(value: string){
         setIsFilled(!!value);
         setName(value);
+    }
+
+    const navigation =useNavigation();
+
+    function handleSumit(){
+        navigation.navigate('Confirmation');
     }
 
     return(
@@ -64,7 +71,10 @@ export function UserIdentification(){
 
                         <View style={styles.footer}>
 
-                          <Button/> 
+                          <Button 
+                            title="Confirmar"
+                            onPress={handleSumit}
+                          /> 
                           </View>
                         </View>               
                 </View>

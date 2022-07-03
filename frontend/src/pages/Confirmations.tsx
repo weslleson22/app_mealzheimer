@@ -26,7 +26,10 @@ export function Confirmation(){
             cuidado.
             </Text>
             <View style={styles.footer}>
-            <Button/>
+            <Button
+            title="Prontinho"
+            
+            />
         </View>
         </View>
 

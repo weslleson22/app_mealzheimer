@@ -8,10 +8,10 @@ import { useFonts,
 import AppLoading from 'expo-app-loading';
 import { UserIdentification } from "./src/pages/UserIdentification";
 import { Confirmation } from "./src/pages/Confirmations";
+import Routes from "./src/routes";
 
 /*
 expo install expo-app-loading vai ajuda a segurar a tela de splash até a fonte ser carregada.
-
 */
 export default function App(){
 
@@ -27,7 +27,8 @@ export default function App(){
   return(
    //<Welcome/>
    //<UserIdentification/>
-   <Confirmation/>
+   
+   <Routes/>
   )
 }
 
