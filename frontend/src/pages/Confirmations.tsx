@@ -1,4 +1,5 @@
 import { Jost_100Thin_Italic, Jost_300Light } from "@expo-google-fonts/jost";
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { SafeAreaView,
     StyleSheet, Text, View
@@ -10,6 +11,10 @@ import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
 export function Confirmation(){
+    const navigation = useNavigation();
+    function handlerMoveOn(){
+        navigation.navigate('HomeSelect')
+    }
     return (
         <SafeAreaView style={styles.container}>
         <View style={styles.content}>
@@ -27,7 +32,8 @@ export function Confirmation(){
             </Text>
             <View style={styles.footer}>
             <Button
-            title="Prontinho"
+            title="Começar"
+            onPressIn={handlerMoveOn}
             
             />
         </View>
