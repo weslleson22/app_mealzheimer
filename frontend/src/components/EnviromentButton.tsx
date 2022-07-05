@@ -42,8 +42,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 12,
-        marginHorizontal: 20,
-        marginRight: 5
+        marginHorizontal: 10,
+        marginRight: 5,
+        
         
     },
     containerActive: {
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
     },
     textActive: {
         fontFamily: fonts.heading,
-        color: colors.blue
+        color: colors.blue,
+        
     }
 })

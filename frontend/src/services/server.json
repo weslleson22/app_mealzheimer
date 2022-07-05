@@ -5,10 +5,17 @@
     ],
   
     "plants_environments": [
+     
       {"key": "living_room", "title": "Sala"},
       {"key": "bedroom", "title": "Quarto"},
       {"key": "kitchen", "title": "Cozinha"},
-      {"key": "bathroom", "title": "Banheiro"}
+      {"key": "bathroom", "title": "Banheiro"},
+      {"key": "bathroo", "title": "Garagem"},
+      {"key": "bathroo", "title": "Garagem2"},
+      {"key": "bathroo", "title": "Garagem3"},
+      {"key": "bathroo", "title": "Garage4"},
+      {"key": "bathroo", "title": "Garagem6"},
+      {"key": "", "title": ""}
     ],
   
     "plants": [
