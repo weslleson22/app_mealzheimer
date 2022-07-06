@@ -138,6 +138,210 @@
           "times": 1,
           "repeat_every": "day"
         }
+      },
+      {
+        "id": 11,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 12,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 13,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 14,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 15,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 16,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 17,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 18,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 19,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 20,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 21,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 22,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 23,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 24,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 25,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 26,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
+      },
+      {
+        "id": 27,
+        "name": "Violeta",
+        "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
+        "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
+        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "environments": ["bathroom"],
+        "frequency": {
+          "times": 2,
+          "repeat_every": "week"
+        }
       }
     ]
   }

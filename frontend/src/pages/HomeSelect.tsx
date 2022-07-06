@@ -12,13 +12,14 @@ import { Header } from "../components/Header";
 import api from "../services/api"; 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
+import { CardPrimary } from "../components/Primary";
 
 interface EnviromentProps{
     key: string;
     title: string;
 }
 
-interface FuncoesProps{
+interface FunctioonsProps{
     "id": string;
     "name": string;
     "about": string;
@@ -35,7 +36,7 @@ interface FuncoesProps{
 //yarn add axios
 export function HomeSelect(){
     const [Enviroments, setEnvirtoments]= useState<EnviromentProps[]>([]);
-    const [funcoes, setFuncoes]= useState<FuncoesProps[]>([]);
+    const [functioons, setFunctioons]= useState<FunctioonsProps[]>([]);
 
     useEffect(()=>{
         async function fetchEnviroment(){
@@ -49,10 +50,20 @@ export function HomeSelect(){
             ...data
           ]);//Caregrando os dados da api, casa, cozinham..  
         }
-
-
         fetchEnviroment();
     },[])
+
+    useEffect(()=>{
+        async function fetchFunctioons(){
+            const {data } = await api.get('plants');
+            //setEnvirtoments([{key: 'all',title: 'Todos',},...data]);}
+         setFunctioons(data);//Caregrando os dados da api, casa, cozinham..  
+        }
+
+
+        fetchFunctioons();
+    },[])    
+    
     return(
         <View style={styles.container}>
             <View style={styles.Header}>                                
@@ -84,14 +95,19 @@ export function HomeSelect(){
                 contentContainerStyle={styles.EnviromentList}
 
                 />
-                
+                          
+            </View>
+            <View style={styles.funcoes}>
+                    <FlatList
+                    data={functioons}
+                    renderItem={({item})=>(
+                        <CardPrimary data={item}/>
+                     )}
+                     showsVerticalScrollIndicator={false}
+                     numColumns={2}
+                    />
 
-                <View style={styles.funcoes}>
 
-
-                </View>
-
-            
             </View>
     </View>
     )
