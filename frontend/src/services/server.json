@@ -21,10 +21,11 @@
     "plants": [
       {
         "id": 1,
-        "name": "Aningapara",
+        "name": "MINHA FAMILHA",
         "about": "É uma espécie tropical que tem crescimento rápido e fácil manuseio.",
         "water_tips": "Mantenha a terra sempre húmida sem encharcar. Regue 2 vezes na semana.",
-        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/1.svg",
+        "photo": "https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/193ecada8163d83be33876cca876bcf8a5e27426/familialogo.svg",
+        
         "environments": ["living_room", "kitchen"],
         "frequency": {
           "times": 2,
@@ -33,7 +34,7 @@
       },
       {
         "id": 2,
-        "name": "Zamioculca",
+        "name": "QUEM SOU EU",
         "about": "Apesar de florescer na primavera, fica o ano todo bonita e verdinha. ",
         "water_tips": "Utilize vasos com furos e pedras no fundo para facilitar a drenagem. Regue 1 vez no dia.",
         "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/2.svg",
@@ -45,10 +46,10 @@
       },
       {
         "id": 3,
-        "name": "Peperomia",
+        "name": "LEMBRETES",
         "about": "Adapta-se tanto ao sol e sombra, mas prefere ficar num cantinho fresco, sem sol direto. ",
         "water_tips": "Nos dias mais quentes borrife água nas folhas. Regue 3 vezes na semana.",
-        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "photo": "https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/193ecada8163d83be33876cca876bcf8a5e27426/ANOTACOES.svg",
         "environments": ["bedroom"],
         "frequency": {
           "times": 3,
@@ -57,10 +58,10 @@
       },
       {
         "id": 4,
-        "name": "Imbé",
+        "name": "JOGOS",
         "about": "De médio porte que se adapta a diversas regiões, além de ser bem fácil de cultivar. Conquista cada vez mais pessoas.",
         "water_tips": "Mantenha a terra sempre húmida sem encharcar. Regue 2 vezes na semana.",
-        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/4.svg",
+        "photo": "https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/193ecada8163d83be33876cca876bcf8a5e27426/Jogos.svg",
         "environments": ["bedroom", "living_room"],
         "frequency": {
           "times": 2,
@@ -69,10 +70,10 @@
       },
       {
         "id": 5,
-        "name": "Espada São Jorge",
+        "name": "DICAS DE SAUDE",
         "about": "O aroma reduz os níveis de ansiedade e seu cheiro ajudar na qualidade do sono e a produtividade durante o dia.",
         "water_tips": "Regue o solo ao redor. Regue 1 vez no dia.",
-        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/5.svg",
+        "photo": "https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/193ecada8163d83be33876cca876bcf8a5e27426/lgogohort%20(1).svg",
         "environments": ["bedroom", "living_room"],
         "frequency": {
           "times": 1,
@@ -81,10 +82,10 @@
       },
       {
         "id": 6,
-        "name": "Yucca",
+        "name": "MEU ENDEREÇO",
         "about": "São indicadas pois são fáceis de manter e cuidar. Você colocar em pequenos vasos, ou até mesmo em xícaras.",
         "water_tips": "Graças à reserva de água dessas verdinhas, é sempre melhor regar pouco. Regue 1 vez na semana.",
-        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/6.svg",
+        "photo": "https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/193ecada8163d83be33876cca876bcf8a5e27426/logoenderecos.svg",
         "environments": ["kitchen", "bedroom"],
         "frequency": {
           "times": 1,
@@ -336,7 +337,7 @@
         "name": "Violeta",
         "about": "Com flores delicadas. Elas são ótimas sugestões para decorar o banheiro. ",
         "water_tips": "Nada de molhar as flores e folhas. Regue o solo 2 vezes na semana.",
-        "photo": "https://storage.googleapis.com/golden-wind/nextlevelweek/05-plantmanager/3.svg",
+        "photo": "https://raw.githubusercontent.com/weslleson22/algoritmo_de_Dijkstra/1ac9887a08d594a3eb3e49066541710c79ccdc26/familialogo.svg",
         "environments": ["bathroom"],
         "frequency": {
           "times": 2,
