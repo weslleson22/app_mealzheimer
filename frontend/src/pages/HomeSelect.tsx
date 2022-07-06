@@ -38,9 +38,11 @@ export function HomeSelect(){
     const [Enviroments, setEnvirtoments]= useState<EnviromentProps[]>([]);
     const [functioons, setFunctioons]= useState<FunctioonsProps[]>([]);
 
+    const [environmentSelected, setenvironmentSelected] = useState('all');
+
     useEffect(()=>{
         async function fetchEnviroment(){
-            const {data } = await api.get('plants_environments');
+            const {data } = await api.get('plants_environments?_sort=title&_order=asc');
             //setEnvirtoments([{key: 'all',title: 'Todos',},...data]);}
          setEnvirtoments([
             {
@@ -55,7 +57,7 @@ export function HomeSelect(){
 
     useEffect(()=>{
         async function fetchFunctioons(){
-            const {data } = await api.get('plants');
+            const {data } = await api.get('plants?_sort=name &_order=asc');
             //setEnvirtoments([{key: 'all',title: 'Todos',},...data]);}
          setFunctioons(data);//Caregrando os dados da api, casa, cozinham..  
         }
