@@ -34,9 +34,29 @@ interface FuncoesProps{
 
 //yarn add axios
 export function HomeSelect(){
+<<<<<<< HEAD
     const [Enviroments, setEnvirtoments]= useState<EnviromentProps[]>([]);
     const [funcoes, setFuncoes]= useState<FuncoesProps[]>([]);
+=======
+    const [enviroments, setEnvirtoments]= useState<EnviromentProps[]>([]);
+    const [functioons, setFunctioons]= useState<FunctioonsProps[]>([]);
+    const [filterfunctioons, setFilterFunctioons]= useState<FunctioonsProps[]>([]);
+    const [environmentSelected, setEnvironmentSelected] = useState('all');
 
+    function handleEnrivomentSelected(environment: string){
+        setEnvironmentSelected(environment);
+>>>>>>> a30d75e (Filtro aplicado)
+
+        if(environment=='all')
+            return setFilterFunctioons(functioons);
+
+        const filtered = functioons.filter(functioon =>
+            functioon.environments.includes(environment)
+            );
+            setFilterFunctioons(filtered);
+    }
+
+  
     useEffect(()=>{
         async function fetchEnviroment(){
             const {data } = await api.get('plants_environments');
@@ -73,20 +93,38 @@ export function HomeSelect(){
             
             <View>
             <FlatList 
-                    data={Enviroments}
+                    data={enviroments}
                     renderItem={({ item})=>(
                     <EnviromentButton 
                     title={item.title}
-                     active/>
+                    active={item.key == environmentSelected}
+                    onPress={()=>handleEnrivomentSelected(item.key)}
+
+                    />
                 )}
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.EnviromentList}
 
                 />
+<<<<<<< HEAD
                 
 
                 <View style={styles.funcoes}>
+=======
+                          
+            </View>
+            <View style={styles.funcoes}>
+                    <FlatList
+                    data={filterfunctioons}
+                    //data={functioons}
+                    renderItem={({item})=>(
+                        <CardPrimary data={item}/>
+                     )}
+                     showsVerticalScrollIndicator={false}
+                     numColumns={2}
+                    />
+>>>>>>> a30d75e (Filtro aplicado)
 
 
                 </View>
