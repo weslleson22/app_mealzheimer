@@ -35,11 +35,24 @@ interface FunctioonsProps{
 
 //yarn add axios
 export function HomeSelect(){
-    const [Enviroments, setEnvirtoments]= useState<EnviromentProps[]>([]);
+    const [enviroments, setEnvirtoments]= useState<EnviromentProps[]>([]);
     const [functioons, setFunctioons]= useState<FunctioonsProps[]>([]);
+    const [filterfunctioons, setFilterFunctioons]= useState<FunctioonsProps[]>([]);
+    const [environmentSelected, setEnvironmentSelected] = useState('all');
 
-    const [environmentSelected, setenvironmentSelected] = useState('all');
+    function handleEnrivomentSelected(environment: string){
+        setEnvironmentSelected(environment);
 
+        if(environment=='all')
+            return setFilterFunctioons(functioons);
+
+        const filtered = functioons.filter(functioon =>
+            functioon.environments.includes(environment)
+            );
+            setFilterFunctioons(filtered);
+    }
+
+  
     useEffect(()=>{
         async function fetchEnviroment(){
             const {data } = await api.get('plants_environments?_sort=title&_order=asc');
@@ -86,11 +99,14 @@ export function HomeSelect(){
             
             <View>
             <FlatList 
-                    data={Enviroments}
+                    data={enviroments}
                     renderItem={({ item})=>(
                     <EnviromentButton 
                     title={item.title}
-                     active/>
+                    active={item.key == environmentSelected}
+                    onPress={()=>handleEnrivomentSelected(item.key)}
+
+                    />
                 )}
                 horizontal
                 showsHorizontalScrollIndicator={false}
@@ -101,7 +117,8 @@ export function HomeSelect(){
             </View>
             <View style={styles.funcoes}>
                     <FlatList
-                    data={functioons}
+                    data={filterfunctioons}
+                    //data={functioons}
                     renderItem={({item})=>(
                         <CardPrimary data={item}/>
                      )}
