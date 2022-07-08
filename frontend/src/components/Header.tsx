@@ -9,7 +9,7 @@ import colors from "../styles/colors";
 import {getStatusBarHeight} from 'react-native-iphone-x-helper'
 import userIgm from '../assets/idoso.png';
 import fonts from "../styles/fonts";
-
+//jj
 
 export function Header(){
     return (
