@@ -71,7 +71,7 @@ export function HomeSelect(){
     useEffect(()=>{
         async function fetchFunctioons(){
             const {data } = await api.get('plants?_sort=name &_order=asc');
-            //setEnvirtoments([{key: 'all',title: 'Todos',},...data]);}
+            //setEnvirtoments([{key: 'all',title: 'Todos',},...data]);}//
          setFunctioons(data);//Caregrando os dados da api, casa, cozinham..  
         }
 
