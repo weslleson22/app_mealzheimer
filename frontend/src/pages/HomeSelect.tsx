@@ -12,14 +12,13 @@ import { Header } from "../components/Header";
 import api from "../services/api"; 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-import { CardPrimary } from "../components/Primary";
 
 interface EnviromentProps{
     key: string;
     title: string;
 }
 
-interface FunctioonsProps{
+interface FuncoesProps{
     "id": string;
     "name": string;
     "about": string;
@@ -35,6 +34,10 @@ interface FunctioonsProps{
 
 //yarn add axios
 export function HomeSelect(){
+    const [Enviroments, setEnvirtoments]= useState<EnviromentProps[]>([]);
+    const [funcoes, setFuncoes]= useState<FuncoesProps[]>([]);
+
+    
     const [enviroments, setEnvirtoments]= useState<EnviromentProps[]>([]);
     const [functioons, setFunctioons]= useState<FunctioonsProps[]>([]);
     const [filterfunctioons, setFilterFunctioons]= useState<FunctioonsProps[]>([]);
@@ -42,6 +45,7 @@ export function HomeSelect(){
 
     function handleEnrivomentSelected(environment: string){
         setEnvironmentSelected(environment);
+
 
         if(environment=='all')
             return setFilterFunctioons(functioons);
@@ -55,7 +59,7 @@ export function HomeSelect(){
   
     useEffect(()=>{
         async function fetchEnviroment(){
-            const {data } = await api.get('plants_environments?_sort=title&_order=asc');
+            const {data } = await api.get('plants_environments');
             //setEnvirtoments([{key: 'all',title: 'Todos',},...data]);}
          setEnvirtoments([
             {
@@ -65,20 +69,10 @@ export function HomeSelect(){
             ...data
           ]);//Caregrando os dados da api, casa, cozinham..  
         }
+
+
         fetchEnviroment();
     },[])
-
-    useEffect(()=>{
-        async function fetchFunctioons(){
-            const {data } = await api.get('plants?_sort=name &_order=asc');
-            //setEnvirtoments([{key: 'all',title: 'Todos',},...data]);}
-         setFunctioons(data);//Caregrando os dados da api, casa, cozinham..  
-        }
-
-
-        fetchFunctioons();
-    },[])    
-    
     return(
         <View style={styles.container}>
             <View style={styles.Header}>                                
@@ -113,6 +107,11 @@ export function HomeSelect(){
                 contentContainerStyle={styles.EnviromentList}
 
                 />
+
+                
+
+                <View style={styles.funcoes}>
+
                           
             </View>
             <View style={styles.funcoes}>
@@ -127,6 +126,10 @@ export function HomeSelect(){
                     />
 
 
+
+                </View>
+
+            
             </View>
     </View>
     )
