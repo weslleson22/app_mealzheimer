@@ -26,7 +26,7 @@ export function Confirmation(){
             </Text>
 
             <Text style={styles.subtitle}>
-            Agora vamos começar ajudar você  a{'\n'}
+            Agora vamos começar ajudar você a{'\n'}
             cuidar das suas rotinas com muito{'\n'}
             cuidado.
             </Text>

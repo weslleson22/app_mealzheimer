@@ -4,7 +4,8 @@ import {
     View,
     Text,
     StyleSheet,
-    FlatList
+    FlatList,
+    ActivityIndicator
 
 } from "react-native";
 import { EnviromentButton } from "../components/EnviromentButton";
@@ -12,13 +13,14 @@ import { Header } from "../components/Header";
 import api from "../services/api"; 
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-
+import { CardPrimary } from "../components/Primary";
+import {Load} from '../components/Load';
 interface EnviromentProps{
     key: string;
     title: string;
 }
 
-interface FuncoesProps{
+interface FunctioonsProps{
     "id": string;
     "name": string;
     "about": string;
@@ -34,18 +36,20 @@ interface FuncoesProps{
 
 //yarn add axios
 export function HomeSelect(){
-    const [Enviroments, setEnvirtoments]= useState<EnviromentProps[]>([]);
-    const [funcoes, setFuncoes]= useState<FuncoesProps[]>([]);
-
-    
     const [enviroments, setEnvirtoments]= useState<EnviromentProps[]>([]);
     const [functioons, setFunctioons]= useState<FunctioonsProps[]>([]);
     const [filterfunctioons, setFilterFunctioons]= useState<FunctioonsProps[]>([]);
     const [environmentSelected, setEnvironmentSelected] = useState('all');
-
+    const [loading, setLoading] = useState(true);
+    
+    //Trabalhando carregamento da aplicação
+    const [page, setPage]= useState(1);
+    const [loadingMore, setLoadingMore]=useState(true);
+    const [loadedAll, setloadedAll]=useState(false);
+    
+    
     function handleEnrivomentSelected(environment: string){
         setEnvironmentSelected(environment);
-
 
         if(environment=='all')
             return setFilterFunctioons(functioons);
@@ -56,10 +60,40 @@ export function HomeSelect(){
             setFilterFunctioons(filtered);
     }
 
+    async function fetchFunctioons(){
+        const {data } = await api
+        .get(`plants?_sort=name&order=asc&_page=${page}&_limit=8`);
+        //setEnvirtoments([{key: 'all',title: 'Todos',},...data]);}
+     
+    //Caregrando os dados da api, casa, cozinham..  
+    if (!data)
+        return setLoading(true);
+
+    if (page > 1) {
+        setFunctioons(oldValue => [...oldValue, ...data])
+        setFilterFunctioons(oldValue => [...oldValue, ...data])
+    } else {
+        setFunctioons(data);
+        setFilterFunctioons(data);
+    }
+
+    setLoading(false);
+    setLoadingMore(false);
+}
+
+    function handleFetchMore(distance: number) { 
+        if (distance < 1)
+            return;
+
+        setLoadingMore(true);
+        setPage(oldValue => oldValue + 1);
+        fetchFunctioons();
+    }
+
   
     useEffect(()=>{
         async function fetchEnviroment(){
-            const {data } = await api.get('plants_environments');
+            const {data } = await api.get('plants_environments?_sort=title&order=asc');
             //setEnvirtoments([{key: 'all',title: 'Todos',},...data]);}
          setEnvirtoments([
             {
@@ -69,10 +103,17 @@ export function HomeSelect(){
             ...data
           ]);//Caregrando os dados da api, casa, cozinham..  
         }
-
-
         fetchEnviroment();
     },[])
+
+    useEffect(()=>{
+        
+
+
+        fetchFunctioons();
+    },[])    
+    if(loading)
+        return <Load/>
     return(
         <View style={styles.container}>
             <View style={styles.Header}>                                
@@ -107,11 +148,6 @@ export function HomeSelect(){
                 contentContainerStyle={styles.EnviromentList}
 
                 />
-
-                
-
-                <View style={styles.funcoes}>
-
                           
             </View>
             <View style={styles.funcoes}>
@@ -119,17 +155,19 @@ export function HomeSelect(){
                     data={filterfunctioons}
                     //data={functioons}
                     renderItem={({item})=>(
-                        <CardPrimary data={item}/>
+                         <CardPrimary data={item}/>
                      )}
-                     showsVerticalScrollIndicator={false}
+                     showsVerticalScrollIndicator={false} 
                      numColumns={2}
+                     onEndReached={({ distanceFromEnd }) => 
+                     handleFetchMore(distanceFromEnd)}
+                     onEndReachedThreshold={0.1} 
+                     ListFooterComponent={
+                         loadingMore ? <ActivityIndicator color={colors.green} /> : <></>
+                     }
                     />
 
 
-
-                </View>
-
-            
             </View>
     </View>
     )
@@ -137,6 +175,8 @@ export function HomeSelect(){
 
 //Start API 
 //json-server ./src/services/server.json --host 192.168.0.6 --port 3333
+//Para usar animação
+//yarn add lottie-react-native
 const styles = StyleSheet.create({
     container:{
         flex:1,
