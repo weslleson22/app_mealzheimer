@@ -46,7 +46,7 @@ export function HomeSelect(){
     const [page, setPage]= useState(1);
     const [loadingMore, setLoadingMore]=useState(true);
     const [loadedAll, setloadedAll]=useState(false);
-    
+   //Parte4 
     
     function handleEnrivomentSelected(environment: string){
         setEnvironmentSelected(environment);
@@ -64,7 +64,7 @@ export function HomeSelect(){
         const {data } = await api
         .get(`plants?_sort=name&order=asc&_page=${page}&_limit=8`);
         //setEnvirtoments([{key: 'all',title: 'Todos',},...data]);}
-     
+      
     //Caregrando os dados da api, casa, cozinham..  
     if (!data)
         return setLoading(true);
