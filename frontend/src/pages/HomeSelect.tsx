@@ -15,6 +15,7 @@ import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { CardPrimary } from "../components/Primary";
 import {Load} from '../components/Load';
+import { useNavigation } from "@react-navigation/native";
 interface EnviromentProps{
     key: string;
     title: string;
@@ -41,6 +42,8 @@ export function HomeSelect(){
     const [filterfunctioons, setFilterFunctioons]= useState<FunctioonsProps[]>([]);
     const [environmentSelected, setEnvironmentSelected] = useState('all');
     const [loading, setLoading] = useState(true);
+
+    const navitation = useNavigation();
     
     //Trabalhando carregamento da aplicação
     const [page, setPage]= useState(1);
@@ -89,6 +92,9 @@ export function HomeSelect(){
         setPage(oldValue => oldValue + 1);
         fetchFunctioons();
     }
+    function handlePlantSelect(plant: FunctioonsProps){
+        navitation.navigate('PlantSave');
+    }
 
   
     useEffect(()=>{
@@ -133,8 +139,10 @@ export function HomeSelect(){
 
             
             <View>
-            <FlatList 
+               <FlatList 
+
                     data={enviroments}
+                    keyExtractor={(item)=>String(item.key)}
                     renderItem={({ item})=>(
                     <EnviromentButton 
                     title={item.title}
@@ -154,8 +162,13 @@ export function HomeSelect(){
                     <FlatList
                     data={filterfunctioons}
                     //data={functioons}
+                    //Recomendo sempre envolver em String os ID
+                    keyExtractor={(item)=> String(item.id)}
                     renderItem={({item})=>(
-                         <CardPrimary data={item}/>
+                         <CardPrimary 
+                         data={item}
+                         onPress={()=> handlePlantSelect(item)}
+                         />
                      )}
                      showsVerticalScrollIndicator={false} 
                      numColumns={2}
