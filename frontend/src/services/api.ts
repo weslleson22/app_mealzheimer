@@ -7,3 +7,4 @@ const api = axios.create({
 export default api;
 //json-server ./src/services/server.json --host  10.9.60.135 --port 3333
 ///jhkljhjkhjhll
+//json-server ./src/services/server.json --host  192.168.0.5 --port 3333 --daley 5000000

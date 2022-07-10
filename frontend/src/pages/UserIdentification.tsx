@@ -1,5 +1,6 @@
 import { Jost_100Thin_Italic } from "@expo-google-fonts/jost";
 import { NavigationContainerRefContext, useNavigation } from "@react-navigation/native";
+
 import React, { useState } from "react";
 import { 
     Alert,
@@ -13,11 +14,12 @@ import {
     TouchableWithoutFeedback,
     View
 } from "react-native";
-
+//expo install @react-native-async-storage/async-storage > Usada para fazer o armazenamento local
 //KeyboardAvoidingVie é responsavel por não fazer o button sumir quando estiver digitando o text
 import { Button } from "../components/Button";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export function UserIdentification(){
     const[isFocused, setIsFocused]=useState(false);
@@ -37,7 +39,11 @@ export function UserIdentification(){
 
     const navigation =useNavigation();
    
-    function handleSumit(){
+    async function handleSumit(){
+        if(!name)
+        return Alert.alert('Me diz como chamar você🥺');
+
+       await AsyncStorage.setItem('@app:user', name);
         navigation.navigate('Confirmation');
     }
 
