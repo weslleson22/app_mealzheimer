@@ -8,20 +8,24 @@ interface CardProps extends RectButtonProps{
     data:{
         name: string;
         photo: string,
+        
     }
 }
 //Para fazer uso do SVG
 //expo install react-native-svg
 //asdasd
+
 export const CardPrimary = ({data, ...rest}: CardProps) =>{
     return(
+
         <RectButton
             style={styles.container}
             {...rest}
         >
             <SvgFromUri uri={data.photo} width={70} height={70}/>
+            
             <Text style={styles.text}>
-                {data.name}
+                { data.name }
             </Text>
         </RectButton>
     )

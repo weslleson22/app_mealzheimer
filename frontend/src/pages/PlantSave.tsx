@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Alert,
          StyleSheet,
          Text,
@@ -10,50 +10,114 @@ import { Alert,
  } from "react-native";
 import { getBottomSpace } from "react-native-iphone-x-helper";
 import { color } from "react-native-reanimated";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
  import { SvgFromUri } from "react-native-svg";
 import waterdrop from "../assets/waterdrop.png";
 import { Button } from "../components/Button";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
- export function PlantSave(){
+import DateTimePicker, {Event} from '@react-native-community/datetimepicker';
+import { format, isBefore } from "date-fns";
+import { PlantProps } from "../libs/storage";
+
+interface Params{
+    plant: PlantProps 
+    
+}
+export function PlantSave() {
+
+    const [selectedDateTime, setSelectedDateTime] = useState(new Date());
+    const [showDatePicker, setShowDatePicker] = useState(Platform.OS == 'ios');
+
+    const navigation = useNavigation();
+    const route = useRoute();
+
+    const { plant } = route.params as Params;
+
+    function handleChangeTime(event: Event, dateTime: Date | undefined) {
+        //const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+            // do the rest here
+        //  }
+        if(Platform.OS === 'android') {
+            setShowDatePicker(oldState => !oldState);
+        }
+
+        if(dateTime && isBefore(dateTime, new Date())) {
+            setSelectedDateTime(new Date());
+            return Alert.alert('Escolha uma hora no futuro! ⏰')
+        }
+
+        if(dateTime) {
+            setSelectedDateTime(dateTime);
+        }
+    }
+
+    function handleOpenDateTimePickerForAndroid() {
+        setShowDatePicker(oldState => !oldState);
+    }
+
+
         return(
+            <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.container}
+        >
             <View style={styles.container}>
-            <View style={styles.plantInfo}>
-                <SvgFromUri
-                uri=''
-                height={150}
-                width={150}
-                
-                />
-                <Text style={styles.plantName}>
-                    Nome da planta
-                </Text>
-                <Text style={styles.plantAbout}>
-                    Lorem ipsum dolor sit ame consectetur adipisicing elit
-                </Text>
-            </View>
-            <View style={styles.controller}>
-                <View style={styles.tipContainer}>
-                    <Image
-                    source={waterdrop}
-                    style={styles.tipImage}
+                <View style={styles.plantInfo}>
+                    <SvgFromUri
+                    uri={plant.photo}
+                    height={150}
+                    width={150}
                     />
-                    <Text style={styles.tipText}>
-                        Lorem ipsum
-                    </Text>
+
+                    <Text style={styles.plantName}>{plant.name}</Text>
+
+                    <Text style={styles.plantAbout}>{plant.about}</Text>
+                    
                 </View>
 
-                <Text style={styles.alertLabel}>
-                    Escolha o melhor horário para ser lembrado:
-                </Text>
-                <Button
-                title="Cadastrar planta"
-                onPress={()=>{}}
-                
-                />
+                <View style={styles.controller}>
+                    <View style={styles.tipContainer}>
+                        <Image source={waterdrop} style={styles.tipImage}/>
+                        <Text style={styles.tipText}>
+                            {plant.water_tips}
+                        </Text>
+                    </View>
+
+                    <Text style={styles.alertLabel}>
+                        Escolha o melhor horário para ser lembrado:
+                    </Text>
+                    {
+                        showDatePicker && (
+                            <DateTimePicker 
+                                value={selectedDateTime}
+                                mode='time'
+                                display='default'
+                                onChange={handleChangeTime}
+                            />
+                        )
+                    }
+
+                    {
+                        Platform.OS === 'android' && (
+                            <TouchableOpacity 
+                            style={styles.dateTimePickerButton}
+                            onPress={handleOpenDateTimePickerForAndroid}
+                            >
+                                <Text style={styles.dateTimePickerText}>
+                                    {`Mudar ${format(selectedDateTime, 'HH:mm')}`}
+                                </Text>
+                            </TouchableOpacity>
+                        )
+                    }
+                    <Button
+                        title='Cadastrar planta'
+                       // onPress={handleSave}
+                    />
+                </View>
             </View>
-            </View>
+        </ScrollView>
         )
  }
 
@@ -124,8 +188,9 @@ import fonts from "../styles/fonts";
         paddingVertical: 40,
     },
     dateTimePickerText: {
-        color: colors.heading,
+        color: colors.blue,
         fontSize: 24,
         fontFamily: fonts.text
     }
 });
+

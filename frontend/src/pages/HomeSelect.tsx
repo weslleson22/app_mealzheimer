@@ -16,30 +16,18 @@ import fonts from "../styles/fonts";
 import { CardPrimary } from "../components/Primary";
 import {Load} from '../components/Load';
 import { useNavigation } from "@react-navigation/native";
+import { PlantProps } from "../libs/storage";
 interface EnviromentProps{
     key: string;
     title: string;
-}
-
-interface FunctioonsProps{
-    "id": string;
-    "name": string;
-    "about": string;
-    "water_tips": string;
-    "photo": string;
-    "environments": [string],
-    "frequency": {
-      "times": number,
-      "repeat_every": string;
-        }
 }
 
 
 //yarn add axios
 export function HomeSelect(){
     const [enviroments, setEnvirtoments]= useState<EnviromentProps[]>([]);
-    const [functioons, setFunctioons]= useState<FunctioonsProps[]>([]);
-    const [filterfunctioons, setFilterFunctioons]= useState<FunctioonsProps[]>([]);
+    const [functioons, setFunctioons]= useState<PlantProps[]>([]);
+    const [filterfunctioons, setFilterFunctioons]= useState<PlantProps[]>([]);
     const [environmentSelected, setEnvironmentSelected] = useState('all');
     const [loading, setLoading] = useState(true);
 
@@ -92,8 +80,8 @@ export function HomeSelect(){
         setPage(oldValue => oldValue + 1);
         fetchFunctioons();
     }
-    function handlePlantSelect(plant: FunctioonsProps){
-        navitation.navigate('PlantSave');
+    function handlePlantSelect(plant: PlantProps){
+        navitation.navigate('PlantSave', {plant});
     }
 
   
