@@ -43,9 +43,20 @@ export function UserIdentification(){
         if(!name)
         return Alert.alert('Me diz como chamar você🥺');
 
-       await AsyncStorage.setItem('@app:user', name);
-        navigation.navigate('Confirmation');
-    }
+        try {
+            await AsyncStorage.setItem('@app:user', name);
+        } catch(err) {
+            return Alert.alert('Não foi possível salvar o seu nome 😥');
+        }
+        
+        navigation.navigate('Confirmation', {
+            title: 'Prontinho',
+            subtitle: 'Agora vamos começar a cuidar das suas plantinhas com muito cuidado.',
+            buttonTitle: 'Começar',
+            icon: 'smile',
+            nextScreen: 'HomeSelect'
+        });
+	}
 
     return(
         <SafeAreaView style={styles.container}>

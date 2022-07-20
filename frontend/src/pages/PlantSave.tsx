@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import { Alert,
-         StyleSheet,
-         Text,
-         View,
-         Image,
-         ScrollView,
-         Platform,
-         TouchableOpacity
- } from "react-native";
-import { getBottomSpace } from "react-native-iphone-x-helper";
-import { color } from "react-native-reanimated";
-import { useNavigation, useRoute } from "@react-navigation/native";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { useNavigation, useRoute } from '@react-navigation/core';
+import { format, isBefore } from 'date-fns';
+import React, { useState } from 'react';
+import {
+    Alert,
+    Image,
+    Platform,
 
- import { SvgFromUri } from "react-native-svg";
-import waterdrop from "../assets/waterdrop.png";
-import { Button } from "../components/Button";
-import colors from "../styles/colors";
-import fonts from "../styles/fonts";
-import DateTimePicker, {Event} from '@react-native-community/datetimepicker';
-import { format, isBefore } from "date-fns";
-import { PlantProps } from "../libs/storage";
+    ScrollView, StyleSheet,
 
-interface Params{
-    plant: PlantProps 
-    
+    Text,
+    TouchableOpacity,
+    View
+} from 'react-native';
+import { getBottomSpace } from 'react-native-iphone-x-helper';
+import { SvgFromUri } from 'react-native-svg';
+import waterdrop from '../assets/waterdrop.png';
+import { Button } from '../components/Button';
+import { loadPlant, PlantProps, savePlant } from '../libs/storage';
+import colors from '../styles/colors';
+import fonts from '../styles/fonts';
+
+interface Params {
+    plant: PlantProps;
 }
+
 export function PlantSave() {
 
     const [selectedDateTime, setSelectedDateTime] = useState(new Date());
@@ -36,9 +36,6 @@ export function PlantSave() {
     const { plant } = route.params as Params;
 
     function handleChangeTime(event: Event, dateTime: Date | undefined) {
-        //const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-            // do the rest here
-        //  }
         if(Platform.OS === 'android') {
             setShowDatePicker(oldState => !oldState);
         }
@@ -57,9 +54,30 @@ export function PlantSave() {
         setShowDatePicker(oldState => !oldState);
     }
 
+    async function handleSave() { 
+       /* const data = await loadPlant();
+        console.log(data); */      
+        try {
+            await savePlant({
+                ...plant,
+                dateTimeNotification: selectedDateTime
+            })
 
-        return(
-            <ScrollView
+            navigation.navigate('Confirmation', {
+                title: 'Tudo certo',
+                subtitle: 'Fique tranquilo que sempre vamos lembrar você das suas atividades cuidar com muito cuidado.',
+                buttonTitle: 'Muito Obrigado :D',
+                icon: 'hug',
+                nextScreen: 'MyPlants'
+            });
+
+        } catch(error) {
+            Alert.alert('Não foi possível salvar. 😥')
+        }
+    }
+
+    return (
+        <ScrollView
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.container}
         >
@@ -113,15 +131,15 @@ export function PlantSave() {
                     }
                     <Button
                         title='Cadastrar planta'
-                       // onPress={handleSave}
+                        onPress={handleSave}
                     />
                 </View>
             </View>
         </ScrollView>
-        )
- }
+    )
+}
 
- const styles = StyleSheet.create({
+const styles = StyleSheet.create({
     container: {
         flex: 1,
         justifyContent: 'space-between',
@@ -137,7 +155,7 @@ export function PlantSave() {
     },
     plantName: {
         fontFamily: fonts.heading,
-        fontSize: 20,
+        fontSize: 14,
         color: colors.blue,
         marginTop: 15
     },
@@ -145,7 +163,6 @@ export function PlantSave() {
         textAlign: 'center',
         fontFamily: fonts.text,
         color: colors.blue,
-        fontSize: 17,
         marginTop: 10
     },
     controller: {
@@ -179,7 +196,7 @@ export function PlantSave() {
         textAlign: 'center',
         fontFamily: fonts.complement,
         color: colors.blue,
-        fontSize: 15,
+        fontSize: 12,
         marginBottom: 5
     },
     dateTimePickerButton: {
@@ -193,4 +210,3 @@ export function PlantSave() {
         fontFamily: fonts.text
     }
 });
-
