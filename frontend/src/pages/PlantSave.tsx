@@ -55,8 +55,8 @@ export function PlantSave() {
     }
 
     async function handleSave() { 
-       /* const data = await loadPlant();
-        console.log(data); */      
+        const data = await loadPlant();
+        console.log(data);       
         try {
             await savePlant({
                 ...plant,
@@ -71,7 +71,7 @@ export function PlantSave() {
                 nextScreen: 'MyPlants'
             });
 
-        } catch(error) {
+        } catch{
             Alert.alert('Não foi possível salvar. 😥')
         }
     }
