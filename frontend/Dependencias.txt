@@ -1,4 +1,13 @@
 expo install @react-native-community/datetimepicker _>>>> Usada para o relogio
 yarn add date-fns >> usamos ela para fazer a verificação de uma data que já passou
 
+<<<<<<< HEAD
 expo install expo-notifications >>install
+=======
+expo install expo-notifications
+
+yarn add @react-navigation/bottom-tabs 
+
+npm i @expo/vector-icons
+yarn add animated
+>>>>>>> all
