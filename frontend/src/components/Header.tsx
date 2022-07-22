@@ -1,73 +1,65 @@
-import React, {useEffect, useState} from "react";
-import { 
-    View,
+import UserImg from '../assets/idoso.png';
+import AsyncStorange from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from 'react';
+import {
+    Image,
     StyleSheet,
     Text,
-    Image } 
-    from "react-native";
-import colors from "../styles/colors";
-import {getStatusBarHeight} from 'react-native-iphone-x-helper'
-import userIgm from '../assets/idoso.png';
-import fonts from "../styles/fonts";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+    View
+} from 'react-native';
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+//import UserImg from '../assets/paulo.jpg';
+import colors from '../styles/colors';
+import fonts from '../styles/fonts';
 
-
-export function Header(){
-
+export function Header() {
     const [userName, setUserName] = useState<string>();
 
-    useEffect(()=>{
-        
-    async function loadStorageUserName() {
-        const user = await AsyncStorage.getItem('@app:user');
-        setUserName(user || '');
-        
-    }
-    loadStorageUserName();
+    useEffect(() => {
+        async function loadStorangeUsername() {
+            const user = await AsyncStorange.getItem('@plantmanager:user');
 
-    },[]);
-    return (
+            setUserName(user || '')
+        }
+
+        loadStorangeUsername();
+    }, [])
+
+    return(
         <View style={styles.container}>
-          
-          <View>
+            <View>
                 <Text style={styles.greeting}>Olá,</Text>
-                <Text style={styles.UserName}>
-                    {userName}
-                </Text>
-           </View>
-                   
+                <Text style={styles.userName}>{userName}</Text>
+            </View>
 
-        <Image source ={userIgm} style={styles.image}/>   
+            <Image source={UserImg} style={styles.image}/>
         </View>
     )
 }
-//npm i react-native-iphone-x-helper --save
-const styles = StyleSheet.create({ 
-    container:{
-        width: '100%',
-        flexDirection: "row",
-        justifyContent: 'space-between', 
-        alignItems: 'center',
-        paddingVertical:20,
-        marginTop: getStatusBarHeight(),
-        
-    },
-    image:{
-        width: 90,
-        height: 90,
-        borderRadius: 50,
-    },
 
-        greeting:{
-            fontSize: 32,
-            fontFamily: fonts.heading,
-            color: colors.blue,
-            
-        },
-        UserName:{
-            fontSize:32,
-            fontFamily: fonts.heading,
-            color: colors.blue,
-            lineHeight: 40
-        }
+const styles = StyleSheet.create({
+    container: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingVertical: 20,
+        marginTop: getStatusBarHeight(),
+    },
+    greeting: {
+        fontSize: 32,
+        color: colors.blue,
+        fontFamily: fonts.text
+    },
+    userName: {
+        fontSize: 32,
+        fontFamily: fonts.heading,
+        color: colors.blue,
+        lineHeight: 40
+    },
+    image: {
+        width:85,
+        height:85,
+        borderRadius: 40
+    }
 })

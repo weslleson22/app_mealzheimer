@@ -5,9 +5,11 @@ import {
     Text,
     StyleSheet,
     FlatList,
-    ActivityIndicator
+    ActivityIndicator,
+    LogBox
 
 } from "react-native";
+
 import { EnviromentButton } from "../components/EnviromentButton";
 import { Header } from "../components/Header";
 import api from "../services/api"; 
@@ -17,6 +19,7 @@ import { CardPrimary } from "../components/Primary";
 import {Load} from '../components/Load';
 import { useNavigation } from "@react-navigation/native";
 import { PlantProps } from "../libs/storage";
+import { ScrollView } from "react-native-gesture-handler";
 interface EnviromentProps{
     key: string;
     title: string;
@@ -36,7 +39,7 @@ export function HomeSelect(){
     //Trabalhando carregamento da aplicação
     const [page, setPage]= useState(1);
     const [loadingMore, setLoadingMore]=useState(true);
-    const [loadedAll, setloadedAll]=useState(false);
+   // const [loadedAll, setloadedAll]=useState(false);
    //Parte4 
     
     function handleEnrivomentSelected(environment: string){
@@ -53,7 +56,7 @@ export function HomeSelect(){
 
     async function fetchFunctioons(){
         const {data } = await api
-        .get(`plants?_sort=name&order=asc&_page=${page}&_limit=8`);
+        .get(`plants?_sort=name&order=asc&_page=${page}&_limit=10`);
         //setEnvirtoments([{key: 'all',title: 'Todos',},...data]);}
       
     //Caregrando os dados da api, casa, cozinham..  
@@ -96,7 +99,9 @@ export function HomeSelect(){
             },
             ...data
           ]);//Caregrando os dados da api, casa, cozinham..  
+          LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
         }
+
         fetchEnviroment();
     },[])
 
@@ -106,9 +111,19 @@ export function HomeSelect(){
 
         fetchFunctioons();
     },[])    
+    useEffect(() => {
+        LogBox.ignoreLogs(["VirtualizedLists should never be nested"])
+      }, [])
+      
     if(loading)
         return <Load/>
+
     return(
+        <ScrollView
+        
+        
+        showsVerticalScrollIndicator={false}//Para não aparecer a barra do lado
+        >
         <View style={styles.container}>
             <View style={styles.Header}>                                
                     
@@ -127,8 +142,8 @@ export function HomeSelect(){
 
             
             <View>
-               <FlatList 
-
+                            <FlatList 
+                    //scrollEnabled={false}
                     data={enviroments}
                     keyExtractor={(item)=>String(item.key)}
                     renderItem={({ item})=>(
@@ -139,6 +154,7 @@ export function HomeSelect(){
 
                     />
                 )}
+               
                 horizontal
                 showsHorizontalScrollIndicator={false}
                 contentContainerStyle={styles.EnviromentList}
@@ -164,13 +180,15 @@ export function HomeSelect(){
                      handleFetchMore(distanceFromEnd)}
                      onEndReachedThreshold={0.1} 
                      ListFooterComponent={
-                         loadingMore ? <ActivityIndicator color={colors.green} /> : <></>
+                         loadingMore ? <ActivityIndicator color={colors.blue} /> : <></>
                      }
                     />
 
 
             </View>
-    </View>
+            </View>
+    </ScrollView>
+    
     )
 }
 

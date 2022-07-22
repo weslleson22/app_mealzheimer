@@ -1,41 +1,56 @@
-import React from "react";
-import {Text, View, StyleSheet} from 'react-native';
-import { Welcome } from "./src/pages/Welcome";
-import { useFonts,
+import React, { useEffect } from 'react';
+import AppLoading from 'expo-app-loading';
+import * as Notifications from 'expo-notifications';
+
+import Routes  from './src/routes';
+import { PlantProps } from './src/libs/storage';
+
+import {
+  useFonts,
   Jost_400Regular,
   Jost_600SemiBold
-} from "@expo-google-fonts/jost";
-import AppLoading from 'expo-app-loading';
-import { UserIdentification } from "./src/pages/UserIdentification";
-import { Confirmation } from "./src/pages/Confirmations";
-import Routes from "./src/routes";
+} from '@expo-google-fonts/jost';
 
-/*
-expo install expo-app-loading vai ajuda a segurar a tela de splash até a fonte ser carregada.
-*/
 export default function App(){
-
- const [fonstsLoaded] = useFonts({
+  const [ fontsLoaded ] = useFonts({
     Jost_400Regular,
     Jost_600SemiBold
   });
-  if (!fonstsLoaded){
-    return  <AppLoading/>
-  
-  }
 
-  return(
-   //<Welcome/>
-   //<UserIdentification/>
-   
-   <Routes/>
+  useEffect(() => {
+    Notifications.setNotificationHandler({
+      handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: false,
+        shouldSetBadge: false,
+      }),
+    });
+
+
+    const subscription = Notifications.addNotificationReceivedListener(
+      async notification => {
+        const data = notification.request.content.data.plant as PlantProps;
+        console.log(data);
+      }
+    )
+
+    return () => subscription.remove();
+
+    // async function notifications() {    
+    //   await Notifications.cancelAllScheduledNotificationsAsync();      
+
+    //   const data = await Notifications.getAllScheduledNotificationsAsync();
+    //   console.log("######## NOTIFICAÇÕES AGENDAS ########")
+    //   console.log(data);
+    // }
+
+    // notifications();
+  },[])
+
+  if(!fontsLoaded)
+    return <AppLoading />
+    
+  return (
+    <Routes />
   )
 }
-
-const style = StyleSheet.create({
-  container:{
-    flex: 1, 
-    justifyContent:'center', 
-    alignContent: 'center'
-  }
-})

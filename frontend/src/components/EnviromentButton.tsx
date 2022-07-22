@@ -1,6 +1,6 @@
 import React from 'react';
-import { StyleSheet, Text } from 'react-native';
-import { RectButton, RectButtonProps } from 'react-native-gesture-handler';
+import { StyleSheet, Text, View } from 'react-native';
+import { FlatList, RectButton, RectButtonProps, ScrollView } from 'react-native-gesture-handler';
 import colors from '../styles/colors';
 import fonts from '../styles/fonts';
 
@@ -16,6 +16,7 @@ export function EnviromentButton({
     ...rest
 }: EnviromentsButtonProps) {
     return(
+        
         <RectButton
         style={[
             styles.container,
@@ -30,8 +31,9 @@ export function EnviromentButton({
                 >{ title }</Text>
   
         </RectButton>
+        
     );   
-
+    
 }
 
 const styles = StyleSheet.create({

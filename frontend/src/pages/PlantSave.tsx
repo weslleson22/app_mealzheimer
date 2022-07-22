@@ -29,28 +29,27 @@ export function PlantSave() {
 
     const [selectedDateTime, setSelectedDateTime] = useState(new Date());
     const [showDatePicker, setShowDatePicker] = useState(Platform.OS == 'ios');
-
+   
     const navigation = useNavigation();
     const route = useRoute();
 
     const { plant } = route.params as Params;
 
-    function handleChangeTime(event: Event, dateTime: Date | undefined) {
-        if(Platform.OS === 'android') {
+    function handleChangeTime(event: Event, dateTime: Date | undefined){
+        if(Platform.OS === 'android'){
             setShowDatePicker(oldState => !oldState);
         }
 
-        if(dateTime && isBefore(dateTime, new Date())) {
+        if(dateTime && isBefore(dateTime, new Date())){
             setSelectedDateTime(new Date());
-            return Alert.alert('Escolha uma hora no futuro! ⏰')
+            return Alert.alert('Escolha uma hora no futuro! ⏰');
         }
 
-        if(dateTime) {
+        if(dateTime)
             setSelectedDateTime(dateTime);
-        }
     }
 
-    function handleOpenDateTimePickerForAndroid() {
+    function handleOpenDatetimePickerForAndroid(){
         setShowDatePicker(oldState => !oldState);
     }
 
@@ -71,7 +70,7 @@ export function PlantSave() {
                 nextScreen: 'MyPlants'
             });
 
-        } catch{
+        } catch(error) {
             Alert.alert('Não foi possível salvar. 😥')
         }
     }
@@ -106,25 +105,26 @@ export function PlantSave() {
                     <Text style={styles.alertLabel}>
                         Escolha o melhor horário para ser lembrado:
                     </Text>
-                    {
-                        showDatePicker && (
-                            <DateTimePicker 
-                                value={selectedDateTime}
-                                mode='time'
-                                display='default'
-                                onChange={handleChangeTime}
-                            />
-                        )
-                    }
+                    {showDatePicker && (
+                        <DateTimePicker
+                        value={selectedDateTime}
+                        mode="time"
+                        display="default"
+                        
+                        
+                        onChange={handleChangeTime}
+                        />
+                    )}
 
                     {
                         Platform.OS === 'android' && (
                             <TouchableOpacity 
-                            style={styles.dateTimePickerButton}
-                            onPress={handleOpenDateTimePickerForAndroid}
+                                
+                                style={styles.dateTimePickerButton }
+                                onPress={handleOpenDatetimePickerForAndroid}
                             >
-                                <Text style={styles.dateTimePickerText}>
-                                    {`Mudar ${format(selectedDateTime, 'HH:mm')}`}
+                                <Text style={styles.dateTimePickerText} >
+                                {`Mudar ${format(selectedDateTime, 'HH:mm')}`}
                                 </Text>
                             </TouchableOpacity>
                         )

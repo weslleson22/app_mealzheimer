@@ -8,6 +8,7 @@ import { UserIdentification } from '../pages/UserIdentification';
 import { Welcome } from '../pages/Welcome';
 import colors from '../styles/colors';
 import {MyPlants} from '../pages/MyPlants';
+import AuthRoutes from './tab.routes';
 //import AuthRoutes from './tab.routes';
 
 const stackRoutes = createStackNavigator();
@@ -40,7 +41,7 @@ const AppRoutes: React.FC = () => (
         
         <stackRoutes.Screen 
             name='HomeSelect'
-            component={HomeSelect}
+            component={AuthRoutes}
         />
         <stackRoutes.Screen
             name='PlantSave'
@@ -48,7 +49,7 @@ const AppRoutes: React.FC = () => (
         />
         <stackRoutes.Screen 
             name='MyPlants'
-            component={MyPlants}
+            component={AuthRoutes}
         />
           
     </stackRoutes.Navigator>
