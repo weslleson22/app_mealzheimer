@@ -64,10 +64,10 @@ export function PlantSave() {
 
             navigation.navigate('Confirmation', {
                 title: 'Tudo certo',
-                subtitle: 'Fique tranquilo que sempre vamos lembrar você das suas atividades cuidar com muito cuidado.',
+                subtitle: 'Fique tranquilo que sempre vamos lembrar você das suas atividades com muito cuidar com muito cuidado.',
                 buttonTitle: 'Muito Obrigado :D',
                 icon: 'hug',
-                nextScreen: 'MyPlants'
+                nextScreen: 'TelaPrincipal'
             });
 
         } catch(error) {

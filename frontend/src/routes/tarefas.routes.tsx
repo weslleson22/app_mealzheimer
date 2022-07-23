@@ -11,12 +11,11 @@ import {MyPlants} from '../pages/MyPlants';
 import AuthRoutes from './tab.routes';
 import { Welcome01 } from '../pages01/Welcome01';
 import { TarefasSelect } from '../pages01/TarefasSelect';
-import { TelaPrincipal } from '../screen/TelaPrincipal';
 //import AuthRoutes from './tab.routes';
 
 const stackRoutes = createStackNavigator();
 
-const AppRoutes: React.FC = () => (
+const AppRoutes1_Tarefas: React.FC = () => (
     <stackRoutes.Navigator
      //   headerMode='none'
         screenOptions={{
@@ -28,46 +27,18 @@ const AppRoutes: React.FC = () => (
         }}
     >
         <stackRoutes.Screen 
-            name='Welcome'
-            component={Welcome}
-        />
-
-        <stackRoutes.Screen 
-            name='UserIdentification'
-            component={UserIdentification}
-        />
-
-        <stackRoutes.Screen 
-            name='Confirmation'
-            component={Confirmation}
-        />
-        
-        <stackRoutes.Screen 
-            name='HomeSelect'
-            component={AuthRoutes}
-        />
-        <stackRoutes.Screen
-            name='PlantSave'
-            component={PlantSave}
-        />
-        <stackRoutes.Screen 
-            name='MyPlants'
-            component={AuthRoutes}
-        />
-        <stackRoutes.Screen 
             name='Welcome01'
             component={Welcome01}
         />
          <stackRoutes.Screen 
             name='TarefasSelect'
             component={TarefasSelect}
-        />        
-        <stackRoutes.Screen 
-            name='TelaPrincipal'
-            component={TelaPrincipal}
         />
+
+        
+    
           
     </stackRoutes.Navigator>
 )
 
-export default AppRoutes;
+export default AppRoutes1_Tarefas;

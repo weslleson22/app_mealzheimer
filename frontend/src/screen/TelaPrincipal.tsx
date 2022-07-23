@@ -1,56 +1,57 @@
 import { Feather } from "@expo/vector-icons";
+import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import logoIgm from "../pages01/assets/Tarefas.png";
+import { Button01 } from "../pages01/components/Button01";
+
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-import { useNavigation } from "@react-navigation/native";
-export function Welcome01(){
-    const navigation = useNavigation();
 
-    function handleTarefas(){
-        navigation.navigate('TarefasSelect');
+export function TelaPrincipal(){
+ const navigation = useNavigation();
+ 
+    function handlerPlants(){
+        navigation.navigate("HomeSelect");
+    }
+    function handlerTarefas(){
+        navigation.navigate("TarefasSelect");
     }
     return(
-        <SafeAreaView style={styles.container}>
-            <View style={styles.wapper}>
+              <View style={styles.wapper}>
                 <Text style={styles.title}>
-                Gerencie {'\n'}seu dia a dia de {'\n'}forma fácil.
+                Menu
                 </Text>
             
-                <Image source={logoIgm} 
-                style={styles.image}
-                resizeMode="contain"
-                />
-                <Text style={styles.emoji}>🤗</Text>
-                 <Text style={styles.subtitle}>
-                    Nós cuidamos de lembrar você    
-                    sempre que precisar.
-                
-                </Text>
-                <TouchableOpacity style={styles.button}
-                activeOpacity={0.7}
-                
-                onPress={handleTarefas}
-            
-                >
-                <Text>
-                    <Feather name="chevron-right"
-                    style = {styles.buttonIcon}
-                    >
 
-                    </Feather>
-                </Text>
-            
-            
-                    </TouchableOpacity>
+                <View style={styles.footer}>
+                    <Button01
+                        title={"Minhas Plantas"}
+                        onPress={handlerPlants}
+               />
+               <Text>{'\n'}</Text>
+               <Button01
+                        title={"Minhas Tarefa"}
+                        onPress={handlerTarefas}
+               />
+                              <Text>{'\n'}</Text>
+               <Button01
+                        title={"Dicas de Saúde"}
+                        //onPress={handleMoveOn}
+               />
+                              <Text>{'\n'}</Text>
+               <Button01
+                        title={"Quem sou eu "}
+                        //onPress={handleMoveOn}
+               />
+               
+                </View>
                 </View>
                 
 
-                
-            
-        </SafeAreaView>
+ 
 )
 
 
@@ -109,4 +110,9 @@ const styles = StyleSheet.create({
     }, image:{
     height: Dimensions.get('window').width*0.9
     },
+    footer: {
+        width: '100%',
+        paddingHorizontal: 50,
+        marginTop: 20
+    }
     });

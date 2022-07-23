@@ -1,12 +1,13 @@
-import React from 'react';
+/*import React from 'react';
 import { Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import colors from '../styles/colors';
-import { HomeSelect } from '../pages/HomeSelect';
+
 import { MaterialIcons } from '@expo/vector-icons';
-import { MyPlants } from '../pages/MyPlants';
-import { TelaPrincipal } from '../screen/TelaPrincipal';
+import colors from '../../styles/colors';
+import { HomeSelect } from '../../pages/HomeSelect';
+import { TarefasSelect } from '../TarefasSelect';
+
 
 const AppTab = createBottomTabNavigator();
 
@@ -22,11 +23,9 @@ const AuthRoutes = () => {
                     height: 88
                 },
             }}>
-
-          
                 <AppTab.Screen
                     name="Nova Planta"
-                    component={HomeSelect}
+                    component={TarefasSelect}
                     options={{
                         tabBarIcon: (({ size, color }) => (
                             <MaterialIcons
@@ -39,7 +38,7 @@ const AuthRoutes = () => {
                     }}
                 />
 
-        <AppTab.Screen
+<AppTab.Screen
                     name="Minhas Plantas"
                     component={MyPlants}
                     options={{
@@ -54,8 +53,6 @@ const AuthRoutes = () => {
                     }}
                 />
             </AppTab.Navigator>
-
-        
     )
 }
 

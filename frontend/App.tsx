@@ -11,6 +11,12 @@ import {
   Jost_600SemiBold
 } from '@expo-google-fonts/jost';
 import { Welcome01 } from './src/pages01/Welcome01';
+import Routes_Tarefas from './src/pages01/routes';
+import { TelaPrincipal } from './src/screen/TelaPrincipal';
+import Routes_Tarefas1 from './src/screen/routes';
+import RoutesTelaPrincipal from './src/screen/routes';
+import { Welcome } from './src/pages/Welcome';
+
 
 export default function App(){
   const [ fontsLoaded ] = useFonts({
@@ -37,22 +43,24 @@ export default function App(){
 
     return () => subscription.remove();
 
-    // async function notifications() {    
-    //   await Notifications.cancelAllScheduledNotificationsAsync();      
+     async function notifications() {    
+       await Notifications.cancelAllScheduledNotificationsAsync();      
 
-    //   const data = await Notifications.getAllScheduledNotificationsAsync();
-    //   console.log("######## NOTIFICAÇÕES AGENDAS ########")
-    //   console.log(data);
-    // }
+       const data = await Notifications.getAllScheduledNotificationsAsync();
+       console.log("######## NOTIFICAÇÕES AGENDAS ########")
+       console.log(data);
+     }
 
-    // notifications();
+     notifications();
   },[])
 
   if(!fontsLoaded)
     return <AppLoading />
     
   return (
-    //<Routes />
-    <Welcome01/>
+   <Routes />
+    //<Welcome/>
+   // <RoutesTelaPrincipal/>
+   //<TelaPrincipal/>
   )
 }

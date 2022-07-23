@@ -44,9 +44,9 @@ export async function savePlant(plant: PlantProps) : Promise<void> {
             const interval = Math.trunc(7 / times);
             nexTime.setDate(now.getDate() + interval);
         }
-        else
+        /*else
             nexTime.setDate(nexTime.getDate() + 1)
-
+*/
         const seconds = Math.abs(
             Math.ceil(now.getTime() - nexTime.getTime()) / 1000);
         
