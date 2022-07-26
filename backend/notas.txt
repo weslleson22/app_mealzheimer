@@ -1,0 +1,13 @@
+npm init -y
+npm install express >>> para as rotas
+npm i --save-dev @types/express -D
+
+npm install ts-node -D > Usado para o start
+
+
+>npm install typescript -D
+
+npx tsc --init > para a criação do arq de configuração do typescript
+
+
+npm install ts-node-dev -D  >> Para não aplicação da atualizar
