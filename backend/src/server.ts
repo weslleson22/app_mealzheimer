@@ -1,16 +1,29 @@
-import express from 'express';
+// Rota: Endereço completo da requisição
+// Recurso: Qual a entidade estamos acessando do sistema
 
+// GET: Buscar uma ou mais informações do Back-end
+// POST: Criar uma nova informação do Back-end
+// PUT: Atualizar uma informação existente do Back-end
+// DELETE: Remover uma informação do Banck-end
+
+//POST: http://localhost:3000/users = Criar usuários
+// GET: http://localhost:3333/users = Lista usuários
+// GET: http://localhost:3333/users/id = Busca dados do usuário com ID 5
+
+
+//Request Param: Paramentros que vem na Própria rota que identicam um recurso.
+// Query Param:  Parametros que vem na propria rota geralmente opcionais para filtros. Paginação
+// Request Body: Paramentros para a criação / atualização de informações
+
+//SELECT *FROM users WHERE name = 'Diego'
+// knex('users').where('name, 'wesleson').select('*')
+
+import  express  from "express";
+import routes from './routes';
 
 const app = express();
 
-app.get('/users', (request, response)=>{
-    console.log('Lista 2');
+app.use(express.json());
 
-    response.json([
-        "Wesleson Souza I",
-        "Werves",
-        "Silva", 
-    ]);
-});
-
-app.listen(5000);
+app.use(routes);
+app.listen(3333);

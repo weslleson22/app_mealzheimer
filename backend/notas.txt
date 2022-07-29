@@ -11,3 +11,5 @@ npx tsc --init > para a criação do arq de configuração do typescript
 
 
 npm install ts-node-dev -D  >> Para não aplicação da atualizar
+
+npm i knex > Para fazer uso do banco de dados.
