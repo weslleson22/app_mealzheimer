@@ -9,6 +9,7 @@ export async function seed(knex: Knex){
         {title: 'Irmãos', image: 'irmaos.svg'},
         {title: 'Tios', image: 'tios.svg'},
         {title: 'Primos', image: 'primos.svg'},
+        {title: 'Netos', image: 'netos.svg'},
         
     ]);
 }
