@@ -18,10 +18,7 @@ class PointsController{
       .where("uf", String(uf))
       .distinct()
       .select("points.*");
-
-      
-
-     
+        
         return response.json(points)
     }
 
@@ -59,7 +56,7 @@ class PointsController{
 
     const points = {
                 
-        image: 'image-fake',
+        image: 'https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=60',
         name,
         email,
         whatsapp,
