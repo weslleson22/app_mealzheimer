@@ -1,14 +1,12 @@
 import React from 'react';
 
 import './App.css';
+import Home from './Home';
 
 function App() {
   return (
     
-       <div>
-        
-        <h1>Conteudo da aplicação</h1>
-       </div>
+       <Home/>
     
   );
 }
