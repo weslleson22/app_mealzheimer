@@ -6,18 +6,19 @@
 }
 
 #page-create-point header {
-  margin-top: 40px;
-
+  margin-top: 50px;
+  font-size: 30px;
+  
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 #page-create-point header a {
-  color: var(--title-color);
+  color: #2F80ED;
   font-weight: bold;
   text-decoration: none;
-
+  
   display: flex;
   align-items: center;
 }
@@ -40,6 +41,7 @@
 
 #page-create-point form h1 {
   font-size: 36px;
+  text-align: center;
 }
 
 #page-create-point form fieldset {
