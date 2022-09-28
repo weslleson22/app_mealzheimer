@@ -149,21 +149,25 @@
 
 #page-create-point form button {
   width: 260px;
-  height: 56px;
+  height: 76px;
   background: var(--primary-color);
   border-radius: 8px;
   color: #FFF;
   font-weight: bold;
   font-size: 16px;
   border: 0;
-  align-self: flex-end;
+  align-self: center;
   margin-top: 40px;
   transition: background-color 0.2s;
   cursor: pointer;
+  
 }
 
 #page-create-point form button:hover {
-  background: #2FB86E;
+  background: #003cff;
+  width: 300px;
+  height: 100px;
+     
 }
 
 .items-grid {
@@ -193,13 +197,13 @@
 .items-grid li span {
   flex: 1;
   margin-top: 12px;
-
+  font-weight: bold;
   display: flex;
   align-items: center;
   color: var(--title-color)
 }
 
 .items-grid li.selected {
-  background: #E1FAEC;
-  border: 2px solid #34CB79;
+  background: #71c5f6;
+  border: 2px solid #86afff;
 }
