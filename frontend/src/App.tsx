@@ -1,14 +1,15 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 
 import './App.css';
-import Home from './Home';
+import Home from './pages/Home';
+import Pages from './routes';
+import Routes from './routes';
+
 
 function App() {
   return (
-    
-       <Home/>
-    
+      <Routes />
   );
 }
-
 export default App;
