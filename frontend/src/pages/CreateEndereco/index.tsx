@@ -1,12 +1,24 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { FiArrowLeft } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from '../../assets/logo.png';
 import {TileLayer, Marker, Map} from "react-leaflet";
 import './styles.css';
-
+import api from "../../services/api";
+//Sempre que criamos um array ou objeto: manualmente preciamos informar o tipo da variavel
 const CreatePoint = () =>{
-    
+    interface Item{
+        id: number;
+        title: string;
+        image_url: string
+    }
+    const [items, setItems] = useState<Item[]>([]);
+    useEffect(()=>{
+        api.get('items').then(response => {
+            setItems(response.data)
+        });
+
+    },[]);
     return(
         <div id="page-create-point">
             <header>
@@ -63,13 +75,13 @@ const CreatePoint = () =>{
                         <span>Por favor selecione o endereço no mapa</span>
 
                     </legend>
-                    <Map center={[-2.560967,-44.2194533]} zoom={15}>
+            <Map center={[-2.560967,-44.2194533]} zoom={15}>
             <TileLayer
               attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            
+            <Marker position={[-2.560967,-44.2194533]}/>
           </Map>
                         <div className="field-group">
                             <div className="field">
@@ -96,31 +108,12 @@ const CreatePoint = () =>{
                         
                     </legend> 
                     <ul className="items-grid">
-                        <li className="selected">
-                            <img src="http://localhost:3333/uploads/avos.svg" alt="Teste" width={110} height={110}/>
-                            <span>PAI</span>
+                        {items.map(item=>( 
+                        <li key={item.id}>
+                            <img src={item.image_url} alt={item.title} width={110} height={110}/>
+                            <span>{item.title}</span>
                         </li>
-                        <li >
-                            <img src="http://localhost:3333/uploads/irmaos.svg" alt="Teste" width={110} height={110} />
-                            <span>PAI</span>
-                        </li>
-                        <li>
-                            <img src="http://localhost:3333/uploads/tios.svg" alt="Teste" width={110} height={100}/>
-                            <span>PAI</span>
-                        </li>
-                        <li>
-                            <img src="http://localhost:3333/uploads/avos.svg" alt="Teste" width={110} height={110}/>
-                            <span>PAI</span>
-                        </li>
-                        <li>
-                            <img src="http://localhost:3333/uploads/irmaos.svg" alt="Teste" width={110} height={110} />
-                            <span>PAI</span>
-                        </li>
-                        <li>
-                            <img src="http://localhost:3333/uploads/tios.svg" alt="Teste" width={110} height={100}/>
-                            <span>PAI</span>
-                        </li>
-
+                        ))}
                     </ul>
                 </fieldset>
                 <button type="submit">
