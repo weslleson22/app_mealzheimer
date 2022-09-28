@@ -5,6 +5,7 @@ import logo from '../../assets/logo.png';
 import {TileLayer, Marker, Map} from "react-leaflet";
 import './styles.css';
 import api from "../../services/api";
+import axios from 'axios';
 //Sempre que criamos um array ou objeto: manualmente preciamos informar o tipo da variavel
 const CreatePoint = () =>{
     interface Item{
@@ -12,13 +13,29 @@ const CreatePoint = () =>{
         title: string;
         image_url: string
     }
+    interface IBGEUFResponse{
+        sigla: string
+    }
     const [items, setItems] = useState<Item[]>([]);
+    const [ufs, setUfs] = useState<string[]>([]);
     useEffect(()=>{
+
         api.get('items').then(response => {
             setItems(response.data)
         });
 
     },[]);
+
+    useEffect(()=>{
+        axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then(response=>{
+            //
+            const ufInitials = response.data.map(uf => uf.sigla);
+            //console.log(ufInitials);
+            setUfs(ufInitials)
+        });
+    },[]);
+
+
     return(
         <div id="page-create-point">
             <header>
@@ -87,9 +104,14 @@ const CreatePoint = () =>{
                             <div className="field">
                                 <label htmlFor="uf">Estado (UF)</label>
                                 <select name="uf" id="uf">
-                                    <option value="0">Selecione uma UF</option>
+                                <option value="0">Selecione uma UF</option>
+                                    {ufs.map((uf) => (
+                                    <option key={uf} value={uf}>
+                                        {uf}
+                                    </option>
+                                    ))}
                                 </select>
-
+              
                             </div>
                             <div className="field">
                                 <label htmlFor="city">Estado (UF)</label>
