@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FunctionComponent} from 'react';
 import {Route, BrowserRouter} from 'react-router-dom';
 import CreatePoint from './pages/CreateEndereco';
 import Home from './pages/Home';

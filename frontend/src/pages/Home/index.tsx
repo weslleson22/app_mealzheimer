@@ -8,7 +8,7 @@ const Home = () => {
        <div id="page-home">
             <div className="content">
                 <header>
-                <img src={logo} alt="LogoApp" height={250}/>
+                <img src={logo} alt="LogoApp" height={150}/>
                 </header>
                 <main>
                     <h1>Olá 😀 Bem vindo ao projeto MeAlzherimer</h1>
@@ -18,7 +18,6 @@ const Home = () => {
                         <span>
                         <FiLogIn/>
                         </span>
-                        
                         <strong>👉Cadastre um endereço aqui 👈</strong>
                     </Link>
                 </main>
