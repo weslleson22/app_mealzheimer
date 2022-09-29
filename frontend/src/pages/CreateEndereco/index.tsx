@@ -1,12 +1,15 @@
-import React, {useEffect, useState, ChangeEvent, FormEvent} from "react";
+import React, {useEffect, useState, ChangeEvent, FormEvent, useRef} from "react";
 import { FiArrowLeft } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import logo from '../../assets/logo.png';
 import {TileLayer, Marker, Map} from "react-leaflet";
 import './styles.css';
 import api from "../../services/api";
 import axios from 'axios';
 import { LeafletMouseEvent } from "leaflet";
+import InputMask from "react-input-mask";
+import Home from "../Home";
+
 //import { useNavigate } from 'react-router-dom';
 //Sempre que criamos um array ou objeto: manualmente preciamos informar o tipo da variavel
 const CreatePoint = () =>{
@@ -26,15 +29,9 @@ const CreatePoint = () =>{
 
     const [selectedUf, setSelectedUf] = useState('0');
     const [selectedCity, setSelectedCity] = useState('0');
-    const [selectedPosition, setSelectedPosition] = useState<[number, number]>([
-        0,
-        0,
-      ]);
-    const [initialPosition, setInitionPosition] = useState<[number, number]>([
-        0,
-        0,
-      ]);
-      
+    const [selectedPosition, setSelectedPosition] = useState<[number, number]>([0, 0,]);
+    const [initialPosition, setInitionPosition] = useState<[number, number]>([0, 0,]);
+     
       const [formData, setFormData] = useState({
         name: "",
         email: "",
@@ -42,14 +39,17 @@ const CreatePoint = () =>{
       });
     const [city, setCities] = useState <string[]>([]);
     const [selectedItems, setSelectedItems] = useState<number[]>([]);
-    
+    const history = useHistory();
    // const navigate = useNavigate();
-    
+   // const mapRef = useRef();
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
           const { latitude, longitude } = position.coords;
+
           setInitionPosition([latitude, longitude]);
+          console.log(latitude,longitude)
         });
+      
       });
 
 //Carregando as categorias
@@ -141,8 +141,10 @@ const CreatePoint = () =>{
 
     await api.post("/points", data);
     alert('Endereço Cadastrado! 😊');
-   // history.push('/');//Depois de salva vai para a rota informada
+    history.push('/');
+    //Depois de salva vai para a rota informada
    //navigate('/');
+   
 
   }
 
@@ -180,6 +182,7 @@ const CreatePoint = () =>{
                             <input
                              type="email"
                              name="email"
+                             placeholder="email@example.com"
                              id="email"
                              onChange={handleInputChange}
                              />
@@ -189,7 +192,10 @@ const CreatePoint = () =>{
                     
                         <div className="field">
                             <label htmlFor="whatsapp">Contato do Whatsapp</label>
-                            <input type="text" name="whatsapp" id="whatsapp" onChange={handleInputChange}/>
+                           
+                            <InputMask type="text" mask="(99)-99999-9999" placeholder="(XX)XXXXX-XXXX" name="whatsapp" id="whatsapp" onChange={handleInputChange} />
+                            
+                            
                         </div>
                     </div>
                 </fieldset>
@@ -209,7 +215,7 @@ const CreatePoint = () =>{
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            <Marker position={selectedPosition}/>
+            <Marker position={selectedPosition} />
           </Map>
                         <div className="field-group">
                             <div className="field">
@@ -254,7 +260,7 @@ const CreatePoint = () =>{
                         ))}
                     </ul>
                 </fieldset>
-                <button type="submit">
+                <button type="submit" >
                     Cadastrar endereço <br></br>👆
                 </button>
             </form>
