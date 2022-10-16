@@ -10,7 +10,6 @@ import colors from '../styles/colors';
 import {MyPlants} from '../pages/MyPlants';
 import AuthRoutes from './tab.routes';
 import { Welcome01 } from '../pages01/Welcome01';
-import { TarefasSelect } from '../pages01/TarefasSelect';
 //import AuthRoutes from './tab.routes';
 
 const stackRoutes = createStackNavigator();
@@ -30,11 +29,8 @@ const AppRoutes1_Tarefas: React.FC = () => (
             name='Welcome01'
             component={Welcome01}
         />
-         <stackRoutes.Screen 
-            name='TarefasSelect'
-            component={TarefasSelect}
-        />
 
+     
         
     
           

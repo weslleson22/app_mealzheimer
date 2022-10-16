@@ -8,9 +8,14 @@ import fonts from "../styles/fonts";
 import { useNavigation } from "@react-navigation/native";
 export function Welcome01(){
     const navigation = useNavigation();
-
+    type Nav = {
+        navigate: (value: string) => void;
+      }
+      
+      const { navigate } = useNavigation<Nav>()
     function handleTarefas(){
-        navigation.navigate('TarefasSelect');
+        //navigation.
+        navigate('TarefasSelect');
     }
     return(
         <SafeAreaView style={styles.container}>

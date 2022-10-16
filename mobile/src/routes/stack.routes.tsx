@@ -12,6 +12,8 @@ import AuthRoutes from './tab.routes';
 import { Welcome01 } from '../pages01/Welcome01';
 import { TarefasSelect } from '../pages01/TarefasSelect';
 import { TelaPrincipal } from '../screen/TelaPrincipal';
+import { TelaEndereco } from '../pages01/TelaEndereco';
+//import { TelaEndereco } from '../pages01/TarefasSelect1';
 //import AuthRoutes from './tab.routes';
 
 const stackRoutes = createStackNavigator();
@@ -58,6 +60,10 @@ const AppRoutes: React.FC = () => (
             name='Welcome01'
             component={Welcome01}
         />
+        <stackRoutes.Screen 
+            name='TelaEndereco'
+            component={TelaEndereco}
+        />  
          <stackRoutes.Screen 
             name='TarefasSelect'
             component={TarefasSelect}
@@ -66,7 +72,7 @@ const AppRoutes: React.FC = () => (
             name='TelaPrincipal'
             component={TelaPrincipal}
         />
-          
+                  
     </stackRoutes.Navigator>
 )
 

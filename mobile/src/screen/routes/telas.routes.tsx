@@ -7,7 +7,8 @@ import AuthRoutes from '../../routes/tab.routes';
 
 
 import colors from '../../styles/colors';
-import { TarefasSelect } from '../TarefasSelect';
+
+
 import { TelaPrincipal } from '../TelaPrincipal';
 import { Welcome01 } from '../Welcome01';
 //import AuthRoutes from './tab.routes';
@@ -30,10 +31,7 @@ const AppRoutesTelaPrincipal: React.FC = () => (
             component={TelaPrincipal}
         />
 
-        <stackRoutes1.Screen 
-            name='TarefasSelect'
-            component={TarefasSelect}
-        />
+
        <stackRoutes1.Screen 
             name='HomeSelect'
             component={AuthRoutes}

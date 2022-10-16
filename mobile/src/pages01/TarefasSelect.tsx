@@ -9,7 +9,7 @@ export function TarefasSelect(){
         <View style={styles.container}>
       
       <Text style={styles.title}>
-                Minhas Tarefas
+                Minhas Tarefas! ok asd
                 </Text>
         </View>
     )

@@ -35,7 +35,11 @@ export function HomeSelect(){
     const [loading, setLoading] = useState(true);
 
     const navitation = useNavigation();
-    
+    type Nav = {
+        navigate: (value: string) => void;
+      }
+      
+      const { navigate } = useNavigation<Nav>()
     //Trabalhando carregamento da aplicação
     const [page, setPage]= useState(1);
     const [loadingMore, setLoadingMore]=useState(true);
@@ -84,7 +88,8 @@ export function HomeSelect(){
         fetchFunctioons();
     }
     function handlePlantSelect(plant: PlantProps){
-        navitation.navigate('PlantSave', {plant});
+        //navitation.
+        navigate('PlantSave', {plant});
     }
 
   

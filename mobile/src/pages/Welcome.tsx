@@ -22,9 +22,14 @@ import fonts from "../styles/fonts";
 export function Welcome(){
     //const [visible, setVisible] = useState(false);
     const navigation = useNavigation();
-
+    type Nav = {
+        navigate: (value: string) => void;
+      }
+      
+      const { navigate } = useNavigation<Nav>()
     function handleStart(){
-        navigation.navigate("UserIdentification");
+        //navigation.
+        navigate("UserIdentification");
     }
     
     function handleVisibility(){

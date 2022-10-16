@@ -56,4 +56,4 @@ const AuthRoutes = () => {
     )
 }
 
-export default AuthRoutes;
+export default AuthRoutes;*/

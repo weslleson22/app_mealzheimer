@@ -6,6 +6,8 @@ import React from 'react';
 
 import colors from '../../styles/colors';
 import { TarefasSelect } from '../TarefasSelect';
+import { TarefasSelect1 } from '../TarefasSelect1';
+import { TelaEnd } from '../TelaEnd';
 import { Welcome01 } from '../Welcome01';
 //import AuthRoutes from './tab.routes';
 
@@ -31,6 +33,11 @@ const AppRoutes1_Tarefas: React.FC = () => (
             name='TarefasSelect'
             component={TarefasSelect}
         />
+        <stackRoutes1.Screen 
+            name='TarefasSelect1'
+            component={TarefasSelect1}
+        />
+      
 
         
 

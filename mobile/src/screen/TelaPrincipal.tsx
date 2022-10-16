@@ -12,13 +12,25 @@ import fonts from "../styles/fonts";
 
 export function TelaPrincipal(){
  const navigation = useNavigation();
+ type Nav = {
+    navigate: (value: string) => void;
+  }
+  
+  const { navigate } = useNavigation<Nav>()
  
     function handlerPlants(){
-        navigation.navigate("HomeSelect");
+        //navigation.
+        navigate("HomeSelect");
     }
     function handlerTarefas(){
-        navigation.navigate("TarefasSelect");
+        //navigation.
+        navigate("TarefasSelect");
     }
+    function handlerEndereco(){
+        //navigation.
+        navigate("TelaEndereco");
+    }
+
     return(
               <View style={styles.wapper}>
                 <Text style={styles.title}>
@@ -37,14 +49,10 @@ export function TelaPrincipal(){
                         onPress={handlerTarefas}
                />
                               <Text>{'\n'}</Text>
+
                <Button01
-                        title={"Dicas de Saúde"}
-                        //onPress={handleMoveOn}
-               />
-                              <Text>{'\n'}</Text>
-               <Button01
-                        title={"Quem sou eu "}
-                        //onPress={handleMoveOn}
+                        title={"Endereços da Familia "}
+                        onPress={handlerEndereco}
                />
                
                 </View>

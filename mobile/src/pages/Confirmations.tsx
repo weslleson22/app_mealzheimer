@@ -20,6 +20,11 @@ const emojis = {
 
 export function Confirmation() {
     const navigation = useNavigation();
+    type Nav = {
+        navigate: (value: string) => void;
+      }
+      
+      const { navigate } = useNavigation<Nav>()
     const routes = useRoute();
 
     const {
@@ -31,7 +36,8 @@ export function Confirmation() {
     } = routes.params as Params;
 
     function handleMoveOn() {
-        navigation.navigate(nextScreen)
+      //  navigation.
+      navigate(nextScreen)
     }
 
     return (

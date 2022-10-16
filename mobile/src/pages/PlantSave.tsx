@@ -31,6 +31,11 @@ export function PlantSave() {
     const [showDatePicker, setShowDatePicker] = useState(Platform.OS == 'ios');
    
     const navigation = useNavigation();
+    type Nav = {
+        navigate: (value: string) => void;
+      }
+      
+      const { navigate } = useNavigation<Nav>()
     const route = useRoute();
 
     const { plant } = route.params as Params;

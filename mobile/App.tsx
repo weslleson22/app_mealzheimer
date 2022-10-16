@@ -18,6 +18,7 @@ import RoutesTelaPrincipal from './src/screen/routes';
 import { Welcome } from './src/pages/Welcome';
 
 
+
 export default function App(){
   const [ fontsLoaded ] = useFonts({
     Jost_400Regular,
@@ -60,7 +61,8 @@ export default function App(){
   return (
    <Routes />
     //<Welcome/>
-   // <RoutesTelaPrincipal/>
+    //<RoutesTelaPrincipal/>
    //<TelaPrincipal/>
+   //<HomeEnd/>
   )
 }
