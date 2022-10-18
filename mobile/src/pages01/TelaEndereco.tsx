@@ -4,9 +4,21 @@ import colors from "../styles/colors"
 import { RectButton } from "react-native-gesture-handler"
 import fonts from "../styles/fonts"
 import {Feather as Icon} from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native"
+
 
 
 export function TelaEndereco(){
+    //const navigation = useNavigation();
+    type Nav = {
+        navigate: (value: string) => void;
+      }
+      
+      const { navigate } = useNavigation<Nav>()
+     
+    function handleNavigateMap(){
+        navigate("Points");
+    }
     return(
         <ImageBackground source={require('../assets/mapa.png')}
          style={styles.container}
@@ -21,7 +33,7 @@ export function TelaEndereco(){
         </View>
 
         <View style={styles.footer}>
-            <RectButton style={styles.button} onPress={()=>{}}>
+            <RectButton style={styles.button} onPress={handleNavigateMap}>
                <View style={styles.buttonIcon}>
                 <Text>
                     <Icon name="arrow-right" color={"#fff"} size={40}/>

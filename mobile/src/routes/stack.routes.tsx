@@ -13,6 +13,7 @@ import { Welcome01 } from '../pages01/Welcome01';
 import { TarefasSelect } from '../pages01/TarefasSelect';
 import { TelaPrincipal } from '../screen/TelaPrincipal';
 import { TelaEndereco } from '../pages01/TelaEndereco';
+import {TelaPoints } from '../pages01/TelasAppEndereco/Points';
 //import { TelaEndereco } from '../pages01/TarefasSelect1';
 //import AuthRoutes from './tab.routes';
 
@@ -71,6 +72,10 @@ const AppRoutes: React.FC = () => (
         <stackRoutes.Screen 
             name='TelaPrincipal'
             component={TelaPrincipal}
+        />
+                <stackRoutes.Screen 
+            name='Points'
+            component={TelaPoints}
         />
                   
     </stackRoutes.Navigator>
