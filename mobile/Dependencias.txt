@@ -11,3 +11,7 @@ yarn add @react-navigation/bottom-tabs
 npm i @expo/vector-icons
 yarn add animated
 yarn add react-native-reanimated
+
+expo install react-native-maps
+expo install expo-constants
+expo install react-native-svg

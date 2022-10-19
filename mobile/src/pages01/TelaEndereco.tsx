@@ -1,5 +1,5 @@
 import React from "react"
-import {View, Text, StyleSheet, Image, ImageBackground} from "react-native"
+import {View, Text, StyleSheet, Image, ImageBackground, TouchableOpacity} from "react-native"
 import colors from "../styles/colors"
 import { RectButton } from "react-native-gesture-handler"
 import fonts from "../styles/fonts"
@@ -19,13 +19,24 @@ export function TelaEndereco(){
     function handleNavigateMap(){
         navigate("Points");
     }
+    function handleNavigateTelaPrincipal(){
+      navigate("TelaPrincipal");
+  }
     return(
+        
+
+        <View style={styles.container1}>
+          <TouchableOpacity onPress={handleNavigateTelaPrincipal}>
+          <Icon name="arrow-left" size={30} color="#2D9CDB"/>
+          </TouchableOpacity>
+        
         <ImageBackground source={require('../assets/mapa.png')}
          style={styles.container}
          imageStyle={{width:220, height:200, left: 10, right: 200, top:160}}
          >
             
         <View style={styles.main}>
+
         <Image source={require('../assets/destination-point.png')}/>
         <Text style={styles.title}>Localização das pessoas</Text>
         <Text style={styles.description}>Ajudamos pessoas a encontrarem suas localizações.</Text>
@@ -45,14 +56,21 @@ export function TelaEndereco(){
 
         </View>
         </ImageBackground>
-        
+        </View>
     )
 }
 const styles = StyleSheet.create({
     container: {
       flex: 1,
+      marginLeft:5,
       padding: 32,
     },
+    container1: {
+      flex: 1,
+      padding: 32,
+      marginTop:40
+    },
+
 
   
     main: {
