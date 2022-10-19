@@ -27,6 +27,7 @@
     "expo-app-loading": "~2.0.0",
     "expo-constants": "~13.1.1",
     "expo-font": "~10.1.0",
+    "expo-location": "~14.2.2",
     "expo-notifications": "~0.15.4",
     "expo-status-bar": "~1.3.0",
     "expo-updates": "~0.13.4",

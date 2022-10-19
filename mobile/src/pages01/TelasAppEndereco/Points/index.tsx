@@ -1,5 +1,5 @@
-import React from "react"
-import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image} from "react-native";
+import React, {useState, useEffect} from "react"
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, SafeAreaView, Alert} from "react-native";
 import { Feather as Icon } from "@expo/vector-icons"; 
 import colors from "../../../styles/colors"
 import fonts from "../../../styles/fonts"
@@ -7,7 +7,86 @@ import Constants from 'expo-constants';
 import { useNavigation } from "@react-navigation/native";
 import MapView, {Marker} from 'react-native-maps';
 import {SvgUri} from 'react-native-svg';
+import api2 from "../../../services/api2"; 
+import * as Location from 'expo-location';
+
+interface Item {
+  id: number;
+  title: string;
+  image_url: string;
+}
+
+interface Point {
+  id: number;
+  name: string;
+  image: string;
+  image_url: string;
+  latitude: number;
+  longitude: number;
+}
+
+interface Params {
+  uf: string;
+  city: string;
+}
+
+
+
 export function TelaPoints(){
+
+    
+  const [items, setItems] = useState<Item[]>([]);
+  const [points, setPoints] = useState<Point[]>([]);
+  const [selectedItems, setSelectedItems] = useState<number[]>([]);
+
+  const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
+
+
+  
+
+  useEffect(() => {
+    async function loadPosition() {
+      const { status } = await Location.requestPermissionsAsync();
+
+      if (status !== 'granted') {
+        Alert.alert('Oooops...', 'Precisamos de sua permissão para obter a localização');
+        return;
+      }
+
+      const location = await Location.getCurrentPositionAsync();
+
+      const { latitude, longitude } = location.coords;
+
+      console.log(latitude, longitude);
+
+      setInitialPosition([
+        latitude,
+        longitude
+      ])
+    }
+
+    loadPosition();
+  }, []);
+
+  useEffect(() => {
+    api2.get('points', {
+      params: {
+        city: 'Rio',
+        uf: "MA",
+        items: [4 ]
+      }
+    }).then(response => {
+      setPoints(response.data);
+    })
+  }, [selectedItems]);
+
+  
+
+    useEffect(()=>{
+      api2.get('items').then(response =>{
+        setItems(response.data);
+      });
+    },[]);
     type Nav = {
         navigate: (value: string) => void;
       }
@@ -17,12 +96,25 @@ export function TelaPoints(){
         //navigation.
         navigate("TelaEndereco");
     }
-    function handlerNavigateToDetail(){
-      navigate("Detail")
+    function handlerNavigateToDetail(id: number) {
+      navigate('Detail', { points_id: id});
+    }
+  
+    function handleSelectItem(id: number) {
+      const alreadySelected = selectedItems.includes(id);
+      if (alreadySelected) {
+        setSelectedItems([
+          ...selectedItems.filter((idFiltered) => idFiltered !== id),
+        ]);
+      } else {
+        setSelectedItems([...selectedItems, id]);
+      }
+  
     }
 
     return(
-        <>
+      <>
+        
         <View style={styles.container}>
             <TouchableOpacity onPress={handlerEndereco}>
                 <Icon name="arrow-left" size={30} color="#2D9CDB"/>
@@ -32,58 +124,60 @@ export function TelaPoints(){
             <Text style={styles.description}>Encontre no mapa um ponto.!</Text>
 
             <View style={styles.mapContainer}>
-                 <MapView style={styles.map}
+                 {initialPosition[0] !== 0 && (
+                  <MapView 
+                  style={styles.map} 
+                  loadingEnabled={initialPosition[0]===0}
                   initialRegion={{
-                    latitude:-2.560967,
-                    longitude:-44.2194533,
-                    latitudeDelta:0.015,
-                    longitudeDelta:0.015 ,
-                    }}>
-
-                    <Marker 
-                      style={styles.mapMarker}
-                      onPress={handlerNavigateToDetail}
-                      coordinate={{
-                       latitude:-2.560967,
-                       longitude:-44.2194533,
-                      }}
-                    >
-                      <View style={styles.mapMarkerContainer}>
-                      <Image style={styles.mapMarkerImage} source={{uri: 'https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=60'}}></Image>
-                      <Text style={styles.mapMarkerTitle}>FILHO X</Text>
-                      </View>
-                    </Marker>
-            </MapView> 
+                  latitude: initialPosition[0],
+                  longitude: initialPosition[1],
+                  latitudeDelta: 0.014,
+                  longitudeDelta: 0.014,
+                  }}>
+                  {points.map(points =>(
+                    
+                  <Marker 
+                  key={String(points.id)}
+                  style={styles.mapMarker}
+                  onPress={()=>handlerNavigateToDetail(points.id)}
+                  coordinate={{
+                   latitude:points.latitude,
+                   longitude:points.longitude,
+                  }}
+                >
+                  <View style={styles.mapMarkerContainer}>
+                  <Image style={styles.mapMarkerImage} source={{uri: points.image}}></Image>
+                  <Text style={styles.mapMarkerTitle}>{points.name}</Text>
+                  </View>
+                </Marker>
+                  ))}
+          </MapView>
+                 )} 
             </View>
             
             <View style={styles.itemsContainer}>
             <ScrollView horizontal showsHorizontalScrollIndicator={false}
             contentContainerStyle={{paddingHorizontal:20 }}
             >
-              <TouchableOpacity style={styles.item}>
-                <SvgUri width={40} height={40} uri="http://192.168.0.6:3333/uploads/avos.svg"/>
-                <Text style={styles.itemTitle}>Avos</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.item}>
-                <SvgUri width={40} height={40} uri="http://192.168.0.6:3333/uploads/avos.svg"/>
-                <Text style={styles.itemTitle}>Avos</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.item}>
-                <SvgUri width={40} height={40} uri="http://192.168.0.6:3333/uploads/avos.svg"/>
-                <Text style={styles.itemTitle}>Avos</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.item}>
-                <SvgUri width={40} height={40} uri="http://192.168.0.6:3333/uploads/avos.svg"/>
-                <Text style={styles.itemTitle}>Avos</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.item}>
-                <SvgUri width={40} height={40} uri="http://192.168.0.6:3333/uploads/avos.svg"/>
-                <Text style={styles.itemTitle}>Avos</Text>
-              </TouchableOpacity>
+              {items.map(item => (
+            <TouchableOpacity 
+              key={String(item.id)} 
+              style={[
+                styles.item,
+                selectedItems.includes(item.id) ? styles.selectedItem : {}
+              ]} 
+              onPress={() => handleSelectItem(item.id)}
+              activeOpacity={0.6}
+            >
+              <SvgUri width={42} height={42} uri={item.image_url} />
+              <Text style={styles.itemTitle}>{item.title}</Text>
+            </TouchableOpacity>
+          ))}
               </ScrollView>
 
             </View>
         </View>
+       
         </>
     )
 }
@@ -92,6 +186,7 @@ const styles = StyleSheet.create({
       flex: 1,
       paddingHorizontal: 32,
       paddingTop: 20 + Constants.statusBarHeight,
+      
     },
   
     title: {
@@ -156,9 +251,9 @@ const styles = StyleSheet.create({
     },
   
     item: {
-      backgroundColor: '#fff',
+      backgroundColor: '#2D9CDB',
       borderWidth: 2,
-      borderColor: '#eee',
+      borderColor: '#34CB79',
       height: 120,
       width: 120,
       borderRadius: 8,
@@ -173,7 +268,7 @@ const styles = StyleSheet.create({
     },
   
     selectedItem: {
-      borderColor: '#34CB79',
+      borderColor: '#061FFF',
       borderWidth: 2,
     },
   

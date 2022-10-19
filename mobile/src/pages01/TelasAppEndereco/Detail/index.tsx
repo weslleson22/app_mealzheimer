@@ -1,11 +1,13 @@
 import  React  from "react";
-import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, SafeAreaView} from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, SafeAreaView } from "react-native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import { Feather as Icon, FontAwesome } from "@expo/vector-icons"; 
 import fonts from "../../../styles/fonts";
 import {RectButton} from 'react-native-gesture-handler';
 const TelaDetail = () => {
     const navigation = useNavigation();
+    const route = useRoute();
+    console.log(route.params);
     function handleNavigateBack(){
         navigation.goBack();
     }
