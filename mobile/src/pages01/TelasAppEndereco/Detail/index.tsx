@@ -1,7 +1,7 @@
 import  React  from "react";
 import { View } from "react-native";
-const Detail = () => {
+const TelaDetail = () => {
     return (<View></View>);
 }
 
-export default Detail;
+export default TelaDetail;

@@ -1,11 +1,12 @@
 import React from "react"
-import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image} from "react-native";
 import { Feather as Icon } from "@expo/vector-icons"; 
 import colors from "../../../styles/colors"
 import fonts from "../../../styles/fonts"
 import Constants from 'expo-constants';
 import { useNavigation } from "@react-navigation/native";
-import MapView from 'react-native-maps';
+import MapView, {Marker} from 'react-native-maps';
+import {SvgUri} from 'react-native-svg';
 export function TelaPoints(){
     type Nav = {
         navigate: (value: string) => void;
@@ -16,7 +17,12 @@ export function TelaPoints(){
         //navigation.
         navigate("TelaEndereco");
     }
+    function handlerNavigateToDetail(){
+      navigate("Detail")
+    }
+
     return(
+        <>
         <View style={styles.container}>
             <TouchableOpacity onPress={handlerEndereco}>
                 <Icon name="arrow-left" size={30} color="#2D9CDB"/>
@@ -26,13 +32,63 @@ export function TelaPoints(){
             <Text style={styles.description}>Encontre no mapa um ponto.!</Text>
 
             <View style={styles.mapContainer}>
-                 <MapView style={styles.map}/>
+                 <MapView style={styles.map}
+                  initialRegion={{
+                    latitude:-2.560967,
+                    longitude:-44.2194533,
+                    latitudeDelta:0.015,
+                    longitudeDelta:0.015 ,
+                    }}>
+
+                    <Marker 
+                      style={styles.mapMarker}
+                      onPress={handlerNavigateToDetail}
+                      coordinate={{
+                       latitude:-2.560967,
+                       longitude:-44.2194533,
+                      }}
+                    >
+                      <View style={styles.mapMarkerContainer}>
+                      <Image style={styles.mapMarkerImage} source={{uri: 'https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=60'}}></Image>
+                      <Text style={styles.mapMarkerTitle}> Ponto X</Text>
+                      </View>
+                    </Marker>
+            </MapView> 
+            </View>
+            
+            <View style={styles.itemsContainer}>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{paddingHorizontal:20 }}
+            >
+              <TouchableOpacity style={styles.item}>
+                <SvgUri width={40} height={40} uri="http://192.168.0.6:3333/uploads/avos.svg"/>
+                <Text style={styles.itemTitle}>Avos</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.item}>
+                <SvgUri width={40} height={40} uri="http://192.168.0.6:3333/uploads/avos.svg"/>
+                <Text style={styles.itemTitle}>Avos</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.item}>
+                <SvgUri width={40} height={40} uri="http://192.168.0.6:3333/uploads/avos.svg"/>
+                <Text style={styles.itemTitle}>Avos</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.item}>
+                <SvgUri width={40} height={40} uri="http://192.168.0.6:3333/uploads/avos.svg"/>
+                <Text style={styles.itemTitle}>Avos</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.item}>
+                <SvgUri width={40} height={40} uri="http://192.168.0.6:3333/uploads/avos.svg"/>
+                <Text style={styles.itemTitle}>Avos</Text>
+              </TouchableOpacity>
+              </ScrollView>
+
             </View>
         </View>
+        </>
     )
 }
 const styles = StyleSheet.create({
-    container: {
+    container: { 
       flex: 1,
       paddingHorizontal: 32,
       paddingTop: 20 + Constants.statusBarHeight,
@@ -72,7 +128,7 @@ const styles = StyleSheet.create({
     mapMarkerContainer: {
       width: 90,
       height: 70,
-      backgroundColor: '#34CB79',
+      backgroundColor: '#2D9CDB',
       flexDirection: 'column',
       borderRadius: 8,
       overflow: 'hidden',
@@ -87,7 +143,7 @@ const styles = StyleSheet.create({
   
     mapMarkerTitle: {
       flex: 1,
-      fontFamily: 'Roboto_400Regular',
+      fontFamily: fonts.heading,
       color: '#FFF',
       fontSize: 13,
       lineHeight: 23,
@@ -122,7 +178,7 @@ const styles = StyleSheet.create({
     },
   
     itemTitle: {
-      fontFamily: 'Roboto_400Regular',
+      fontFamily: fonts.heading,
       textAlign: 'center',
       fontSize: 13,
     },

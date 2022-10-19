@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import AppLoading from 'expo-app-loading';
 import * as Notifications from 'expo-notifications';
-
+import './ignoreWarnings';
 import Routes  from './src/routes';
 import { PlantProps } from './src/libs/storage';
 
