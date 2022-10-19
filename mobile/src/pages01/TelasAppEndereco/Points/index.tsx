@@ -50,7 +50,7 @@ export function TelaPoints(){
                     >
                       <View style={styles.mapMarkerContainer}>
                       <Image style={styles.mapMarkerImage} source={{uri: 'https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=60'}}></Image>
-                      <Text style={styles.mapMarkerTitle}> Ponto X</Text>
+                      <Text style={styles.mapMarkerTitle}>FILHO X</Text>
                       </View>
                     </Marker>
             </MapView> 
