@@ -1,23 +1,60 @@
-import  React  from "react";
-import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, SafeAreaView } from "react-native";
+import  React, {useEffect, useState} from "react";
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, SafeAreaView, Linking } from "react-native";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Feather as Icon, FontAwesome } from "@expo/vector-icons"; 
 import fonts from "../../../styles/fonts";
 import {RectButton} from 'react-native-gesture-handler';
+import api2 from "../../../services/api2";
+import * as MailComposer from 'expo-mail-composer';
+
+interface Params {
+  points_id: number;
+}
+
+interface Data {
+  point: {
+    image: string;
+    image_url: string;
+    name: string;
+    email: string;
+    whatsapp: string;
+    city: string;
+    uf: string;
+  };
+  items: {
+    title: string;
+  }[];
+}
+
 const TelaDetail = () => {
-    const navigation = useNavigation();
-    const route = useRoute();
-    console.log(route.params);
+  const [data, setData] = useState<Data>({} as Data);
+
+  const navigation = useNavigation();
+  const route = useRoute();
+
+  const routeParams = route.params as Params;
+  //console.log(route.params)
+  useEffect(() => {
+    api2.get(`points/${routeParams.points_id}`).then(response => {
+      setData(response.data);
+    });
+  }, []);
     function handleNavigateBack(){
         navigation.goBack();
     }
-
-    function handleWhatsapp(){
-        navigation.goBack();
+    function handleWhatsapp() {
+      Linking.openURL(`whatsapp://send?phone=${data.point.whatsapp}&text=Tenho interesse sobre coleta de resíduos`);
     }
-
-    function handleComposeMail(){
-        navigation.goBack();
+  
+    function handleComposeMail() {
+      MailComposer.composeAsync({
+        subject: 'Prezados(a), precisamos de suporte!',
+        recipients: [data.point.email],
+      })
+    }
+  
+    if (!data.point){
+      return null;
     }
     return (
     <SafeAreaView style={{flex:1}}>
@@ -25,13 +62,23 @@ const TelaDetail = () => {
         <TouchableOpacity onPress={handleNavigateBack}>
             <Icon name="arrow-left" size={20} color="#2D9CDB"/>
         </TouchableOpacity>
-        <Image style={styles.pointImage} source={{uri: 'https://images.unsplash.com/photo-1609220136736-443140cffec6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=60'}}/>
-        <Text style={styles.pointName}>PESSOA X</Text>
-        <Text style={styles.pointItems}>Categoria</Text>
+        <View style={styles.Info}>
+          
+        
+        <Image style={styles.pointImage} source={{uri: data.point.image}}/>
+        <Text  style={styles.pointName}>{data.point.name}</Text>
+        
+        <Text style={styles.pointItems}>{data.items.map(item=> item.title)}</Text>
+        </View>
+        <View style={styles.textInfo}>
+        <Text style={styles.textInfo}> Disponivel 24 horas do dia!</Text>
 
+        </View>
         <View style={styles.address}>
-            <Text style={styles.addressTitle}>Endereço</Text>
-            <Text style={styles.addressContent}>São Luis, MA</Text>
+
+        <Text style={styles.addressTitle}> 📍 Endereço:👇 </Text>
+            
+            <Text style={styles.addressContent}>{data.point.city}, {data.point.uf}</Text>
         </View>
         <View style={styles.footer}>
         <RectButton style={styles.button} onPress={handleWhatsapp}>
@@ -56,8 +103,15 @@ const styles = StyleSheet.create({
       flex: 1,
       padding: 32,
       paddingTop: 40,
+      alignContent: "center",
+      
+      
     },
-  
+    Info: {
+      margin:20,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
     pointImage: {
       width: '100%',
       height: 300,
@@ -70,10 +124,25 @@ const styles = StyleSheet.create({
       color: '#322153',
       fontSize: 28,
       fontFamily: fonts.heading,
-      marginTop: 24,
-      alignItems: "center"
+    
+      
+      
+      
     },
   
+    textInfo: {
+      color: '#34CB79',
+      fontSize: 28,
+      fontFamily: fonts.heading,
+      textAlign: 'center',
+      
+      alignItems: 'center',
+      justifyContent: 'center',
+      
+      
+      
+      
+    },
     pointItems: {
       fontFamily: fonts.heading,
       fontSize: 16,
