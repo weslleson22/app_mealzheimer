@@ -19,7 +19,7 @@ export function TelaEndereco(){
       const { navigate } = useNavigation<Nav>()
      
     function handleNavigateMap(){
-      
+              
         navigate("Points", {
           uf,
           city, 

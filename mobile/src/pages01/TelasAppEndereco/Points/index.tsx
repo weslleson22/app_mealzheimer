@@ -9,6 +9,7 @@ import MapView, {Marker} from 'react-native-maps';
 import {SvgUri} from 'react-native-svg';
 import api2 from "../../../services/api2"; 
 import * as Location from 'expo-location';
+import RNPickerSelect from 'react-native-picker-select';
 
 interface Item {
   id: number;
@@ -52,7 +53,7 @@ export function TelaPoints(){
   const a = routeParams.city;
   useEffect(() => {
     async function loadPosition() {
-      const { status } = await Location.requestPermissionsAsync();
+      let { status } = await Location.requestForegroundPermissionsAsync();
 
       if (status !== 'granted') {
         Alert.alert('Oooops...', 'Precisamos de sua permissão para obter a localização');
@@ -122,6 +123,7 @@ export function TelaPoints(){
       <>
         
         <View style={styles.container}>
+          
             <TouchableOpacity onPress={handlerEndereco}>
                 <Icon name="arrow-left" size={30} color="#2D9CDB"/>
                 
@@ -177,6 +179,8 @@ export function TelaPoints(){
             >
               <SvgUri width={42} height={42} uri={item.image_url} />
               <Text style={styles.itemTitle}>{item.title}</Text>
+
+  
             </TouchableOpacity>
           ))}
               </ScrollView>
