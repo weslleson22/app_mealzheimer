@@ -9,6 +9,8 @@ import * as MailComposer from 'expo-mail-composer';
 
 interface Params {
   points_id: number;
+  uf: string;
+  city:string;
 }
 
 interface Data {
@@ -43,7 +45,7 @@ const TelaDetail = () => {
         navigation.goBack();
     }
     function handleWhatsapp() {
-      Linking.openURL(`whatsapp://send?phone=${data.point.whatsapp}&text=Tenho interesse sobre coleta de resíduos`);
+      Linking.openURL(`whatsapp://send?phone=${data.point.whatsapp}&text=Olá precido falar com você.`);
     }
   
     function handleComposeMail() {
@@ -62,14 +64,11 @@ const TelaDetail = () => {
         <TouchableOpacity onPress={handleNavigateBack}>
             <Icon name="arrow-left" size={20} color="#2D9CDB"/>
         </TouchableOpacity>
-        <View style={styles.Info}>
-          
-        
-        <Image style={styles.pointImage} source={{uri: data.point.image}}/>
+
+        <Image style={styles.pointImage}source={{uri: data.point.image}}/>
         <Text  style={styles.pointName}>{data.point.name}</Text>
         
         <Text style={styles.pointItems}>{data.items.map(item=> item.title)}</Text>
-        </View>
         <View style={styles.textInfo}>
         <Text style={styles.textInfo}> Disponivel 24 horas do dia!</Text>
 

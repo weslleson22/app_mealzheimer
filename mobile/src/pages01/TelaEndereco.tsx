@@ -1,5 +1,5 @@
-import React from "react"
-import {View, Text, StyleSheet, Image, ImageBackground, TouchableOpacity} from "react-native"
+import React, {useState} from "react"
+import {View, Text, StyleSheet, Image, ImageBackground, TouchableOpacity, TextInput, KeyboardAvoidingView, Platform} from "react-native"
 import colors from "../styles/colors"
 import { RectButton } from "react-native-gesture-handler"
 import fonts from "../styles/fonts"
@@ -10,6 +10,8 @@ import { useNavigation } from "@react-navigation/native"
 
 export function TelaEndereco(){
     //const navigation = useNavigation();
+    const  [uf, setUf] = useState('');
+    const  [city, setCity] = useState('');
     type Nav = {
         navigate: (value: string) => void;
       }
@@ -17,33 +19,51 @@ export function TelaEndereco(){
       const { navigate } = useNavigation<Nav>()
      
     function handleNavigateMap(){
-        navigate("Points");
+      
+        navigate("Points", {
+          uf,
+          city, 
+          
+        });
     }
     function handleNavigateTelaPrincipal(){
       navigate("TelaPrincipal");
   }
     return(
         
-
+        <KeyboardAvoidingView style={{flex:1}} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <View style={styles.container1}>
           <TouchableOpacity onPress={handleNavigateTelaPrincipal}>
           <Icon name="arrow-left" size={30} color="#2D9CDB"/>
           </TouchableOpacity>
         
-        <ImageBackground source={require('../assets/mapa.png')}
-         style={styles.container}
-         imageStyle={{width:220, height:200, left: 10, right: 200, top:160}}
-         >
+       
             
         <View style={styles.main}>
 
         <Image source={require('../assets/destination-point.png')}/>
-        <Text style={styles.title}>Localização das pessoas</Text>
-        <Text style={styles.description}>Ajudamos pessoas a encontrarem suas localizações.</Text>
-        
+        <View>
+          <Text style={styles.title}>Localização das pessoas</Text>
+          <Text style={styles.description}>Ajudamos pessoas a encontrarem suas localizações.</Text>
+        </View>
         </View>
 
         <View style={styles.footer}>
+          <TextInput style={styles.input} 
+          placeholder="Informe o seu estado"
+          value={uf}
+          maxLength={2}
+          autoCapitalize="characters"
+          onChangeText={setUf}
+          ></TextInput>
+          <TextInput
+            style={styles.input}
+            placeholder="Digite a cidade"
+            value={city}
+            autoCorrect={false}
+            onChangeText={setCity}
+          />
+
             <RectButton style={styles.button} onPress={handleNavigateMap}>
                <View style={styles.buttonIcon}>
                 <Text>
@@ -55,8 +75,9 @@ export function TelaEndereco(){
             </RectButton>
 
         </View>
-        </ImageBackground>
+        
         </View>
+        </KeyboardAvoidingView>
     )
 }
 const styles = StyleSheet.create({
@@ -64,11 +85,15 @@ const styles = StyleSheet.create({
       flex: 1,
       marginLeft:5,
       padding: 32,
+      backgroundColor: "#dcdcdc",
+      borderRadius: 12,
+      
     },
     container1: {
       flex: 1,
+      backgroundColor: "#dcdcdc",
       padding: 32,
-      marginTop:40
+      
     },
 
 
@@ -88,12 +113,14 @@ const styles = StyleSheet.create({
     },
   
     description: {
-      color: '#6C6C80',
+      color: '#322153',
       fontSize: 16,
       marginTop: 16,
       fontFamily: fonts.heading,
       maxWidth: 260,
       lineHeight: 24,
+      textAlign: "center"
+
     },
   
     footer: {},
@@ -102,11 +129,13 @@ const styles = StyleSheet.create({
   
     input: {
       height: 60,
-      backgroundColor: '#FFF',
+      backgroundColor: '#ffffff',
       borderRadius: 10,
       marginBottom: 8,
       paddingHorizontal: 24,
       fontSize: 16,
+      textAlign: "center"
+      
     },
   
     button: {

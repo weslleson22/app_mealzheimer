@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from "react"
-import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, SafeAreaView, Alert} from "react-native";
+import {View, Text, StyleSheet, TouchableOpacity, ScrollView, Image, SafeAreaView, Alert, TextInput} from "react-native";
 import { Feather as Icon } from "@expo/vector-icons"; 
 import colors from "../../../styles/colors"
 import fonts from "../../../styles/fonts"
 import Constants from 'expo-constants';
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import MapView, {Marker} from 'react-native-maps';
 import {SvgUri} from 'react-native-svg';
 import api2 from "../../../services/api2"; 
@@ -41,9 +41,15 @@ export function TelaPoints(){
 
   const [initialPosition, setInitialPosition] = useState<[number, number]>([0, 0]);
 
+  const route = useRoute();
+  const routeParams = route.params as Params;
+  console.log('-----------------');
+  console.log(routeParams.city);
+  console.log(routeParams.uf);
+  console.log(selectedItems);
+  console.log('-----------------');
 
-  
-
+  const a = routeParams.city;
   useEffect(() => {
     async function loadPosition() {
       const { status } = await Location.requestPermissionsAsync();
@@ -71,9 +77,9 @@ export function TelaPoints(){
   useEffect(() => {
     api2.get('points', {
       params: {
-        city: 'Rio',
-        uf: "MA",
-        items: [4 ]
+        city: routeParams.city,
+        uf: routeParams.uf,
+        items: selectedItems
       }
     }).then(response => {
       setPoints(response.data);
@@ -97,7 +103,7 @@ export function TelaPoints(){
         navigate("TelaEndereco");
     }
     function handlerNavigateToDetail(id: number) {
-      navigate('Detail', { points_id: id});
+      navigate('Detail', {points_id: id});
     }
   
     function handleSelectItem(id: number) {
@@ -159,7 +165,7 @@ export function TelaPoints(){
             <ScrollView horizontal showsHorizontalScrollIndicator={false}
             contentContainerStyle={{paddingHorizontal:20 }}
             >
-              {items.map(item => (
+            {items.map(item => (
             <TouchableOpacity 
               key={String(item.id)} 
               style={[
