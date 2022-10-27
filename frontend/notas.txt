@@ -10,3 +10,4 @@ npm intall axios >>> Para fazer as requisições do Backend
 
 
 yarn add react-input-mask
+npm install react-dropzone

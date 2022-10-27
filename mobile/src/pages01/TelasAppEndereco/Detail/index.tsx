@@ -33,7 +33,7 @@ const TelaDetail = () => {
 
   const navigation = useNavigation();
   const route = useRoute();
-
+  
   const routeParams = route.params as Params;
   //console.log(route.params)
   useEffect(() => {
@@ -65,7 +65,7 @@ const TelaDetail = () => {
             <Icon name="arrow-left" size={20} color="#2D9CDB"/>
         </TouchableOpacity>
 
-        <Image style={styles.pointImage}source={{uri: data.point.image}}/>
+        <Image style={styles.pointImage}source={{uri: data.point.image_url}}/>
         <Text  style={styles.pointName}>{data.point.name}</Text>
         
         <Text style={styles.pointItems}>{data.items.map(item=> item.title)}</Text>

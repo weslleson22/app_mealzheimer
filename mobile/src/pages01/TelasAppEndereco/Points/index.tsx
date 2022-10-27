@@ -154,7 +154,7 @@ export function TelaPoints(){
                   }}
                 >
                   <View style={styles.mapMarkerContainer}>
-                  <Image style={styles.mapMarkerImage} source={{uri: points.image}}></Image>
+                  <Image style={styles.mapMarkerImage} source={{uri: points.image_url}}></Image>
                   <Text style={styles.mapMarkerTitle}>{points.name}</Text>
                   </View>
                 </Marker>
