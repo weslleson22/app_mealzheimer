@@ -11,7 +11,7 @@ const Home = () => {
                 <img src={logo} alt="LogoApp" height={150}/>
                 </header>
                 <main>
-                    <h1>Olá 😀 Bem vindo ao projeto MeAlzherimer</h1>
+                    <h1>Olá 😀 Bem vindo ao projeto MeAlzheimer</h1>
                     <p>Ajudamos pessoas a encontrarem suas localizações</p>
                     
 
