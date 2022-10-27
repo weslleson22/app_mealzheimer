@@ -64,9 +64,7 @@ Para utilizar a versão mobile é preciso instalar o expo:
 
 e então só resta instalar o aplicativo do expo no celular e escanear o QR code gerado pelo comando acima. Lembre-se de manter sua máquina e seu celular na mesma rede wi-fi!
 
-# 🖱  Agradecimentos:
 
-Eternamente grato à Rocketseat e toda sua equipe, mas principalmente ao Diego Fernandes que me proporcionou muitas horas de puro conhecimento e código!
 
 # 💻 Conhecimentos praticados:
 
