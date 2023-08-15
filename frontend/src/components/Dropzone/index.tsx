@@ -5,40 +5,43 @@ import { FiUpload } from 'react-icons/fi';
 import './styles.css';
 
 interface IProps {
-  onFileUploaded: (file: File) => void
+  onFileUploaded: (file: File) => void;
 }
 
 const MyDropzone: React.FC<IProps> = ({ onFileUploaded }) => {
-
   const [selectedFileUrl, setSelectedFileUrl] = useState('');
 
-  const onDrop = useCallback(acceptedFiles => {
+  const onDrop = useCallback((acceptedFiles: File[]) => {
     const file = acceptedFiles[0];
 
     const fileUrl = URL.createObjectURL(file);
-    setSelectedFileUrl(fileUrl)
+    setSelectedFileUrl(fileUrl);
     onFileUploaded(file);
-  }, [onFileUploaded])
+  }, [onFileUploaded]);
+
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: 'image/*'
-  })
+    accept:{
+      'image/png': ['.png'],
+      'image/jpg': ['.jpg'],
+      'image/jpeg': ['.jpeg'],
+      },
+  });
 
   return (
     <div className="dropzone" {...getRootProps()}>
-      <input {...getInputProps()} accept='image/*' />
+      <input {...getInputProps()} accept="image/*" />
 
-      {selectedFileUrl
-        ? <img src={selectedFileUrl} alt="Point thmbnail" />
-        : (
-          <p>
-            <FiUpload />
-                Image do estabelecimento.
-          </p>
-        )
-      }
+      {selectedFileUrl ? (
+        <img src={selectedFileUrl} alt="Point thumbnail" />
+      ) : (
+        <p>
+          <FiUpload />
+          Image do estabelecimento.
+        </p>
+      )}
     </div>
-  )
-}
+  );
+};
 
 export default MyDropzone;

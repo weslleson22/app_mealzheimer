@@ -1,15 +1,16 @@
 import { Feather } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/core";
-import React from "react";
+//import React from "react";
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity, ScrollViewBase} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {SvgUri} from 'react-native-svg';
 import logoIgm from "../pages01/assets/Tarefas.png";
 import { Button01 } from "../pages01/components/Button01";
-
+import UserImg from '../assets/idoso.png';
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-
+import AsyncStorange from '@react-native-async-storage/async-storage';
+import React, { useEffect, useState } from 'react';
 export function TelaPrincipal(){
  const navigation = useNavigation();
  type Nav = {
@@ -31,9 +32,31 @@ export function TelaPrincipal(){
         navigate("TelaEndereco");
     }
 
+    const [userName, setUserName] = useState<string>();
+
+    useEffect(() => {
+        async function loadStorangeUsername() {
+            const user = await AsyncStorange.getItem('@plantmanager:user');
+
+            setUserName(user || '')
+        }
+
+        loadStorangeUsername();
+    }, [])
     return(
             <View style={styles.wapper}>
+              <View style={styles.containerProdutor}>
 
+              <Text style={styles.greeting}>Olá,</Text>
+              <Text style={styles.userName}>{userName}</Text>
+          
+              <Image source={UserImg} style={styles.image2}/>
+              </View>
+
+
+
+
+        
             <View style={styles.containerProdutor}>
             <TouchableOpacity style={styles.item} onPress={handlerEndereco}>
                 <SvgUri width={100} height={100} uri="https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/193ecada8163d83be33876cca876bcf8a5e27426/familialogo.svg"/>
@@ -185,4 +208,20 @@ containerProdutor3: {
         color: colors.blue,
         fontSize: 15,
       },
+      greeting: {
+        fontSize: 32,
+        color: colors.blue,
+        fontFamily: fonts.text
+    },
+    userName: {
+        fontSize: 32,
+        fontFamily: fonts.heading,
+        color: colors.blue,
+        lineHeight: 40
+    },
+    image2: {
+        width:120,
+        height:120,
+        borderRadius: 60
+    }
     });
