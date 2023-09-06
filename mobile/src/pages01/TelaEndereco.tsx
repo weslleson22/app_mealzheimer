@@ -128,7 +128,7 @@ export function TelaEndereco() {
 const styles = StyleSheet.create({
   container1: {
     flex: 1,
-    backgroundColor: "#dcdcdc",
+    backgroundColor: "#fff",
     padding: 32,
   },
 
