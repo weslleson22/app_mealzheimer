@@ -1,0 +1,23 @@
+npm init -y
+npm install express >>> para as rotas
+npm i --save-dev @types/express -D
+
+npm install ts-node -D > Usado para o start
+
+
+>npm install typescript -D
+
+npx tsc --init > para a criação do arq de configuração do typescript
+
+
+npm install ts-node-dev -D  >> Para não aplicação da atualizar
+
+npm i knex > Para fazer uso do banco de dados.
+
+npm install cors >> Usado para fazer uso de rotas externas
+
+npm i --save-dev @types/cors
+
+npm install multer >> Para fazer upload de imagens
+
+npm install @types/multer -D

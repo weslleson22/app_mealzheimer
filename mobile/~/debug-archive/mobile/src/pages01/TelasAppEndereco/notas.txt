@@ -1,0 +1,4 @@
+              <TouchableOpacity style={styles.item}>
+                <SvgUri width={40} height={40} uri="http://192.168.0.6:3333/uploads/avos.svg"/>
+                <Text style={styles.itemTitle}>Avos</Text>
+              </TouchableOpacity>
