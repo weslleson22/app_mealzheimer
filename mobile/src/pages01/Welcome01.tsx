@@ -2,7 +2,7 @@ import { Feather } from "@expo/vector-icons";
 import React from "react";
 import { Text, View, StyleSheet, Image, Dimensions, TouchableOpacity} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import logoIgm from "../pages01/assets/Tarefas.png";
+//import logoIgm from "../pages01/assets/Tarefas.png";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 import { useNavigation } from "@react-navigation/native";
@@ -24,10 +24,7 @@ export function Welcome01(){
                 Gerencie {'\n'}seu dia a dia de {'\n'}forma fácil.
                 </Text>
             
-                <Image source={logoIgm} 
-                style={styles.image}
-                resizeMode="contain"
-                />
+                
                 <Text style={styles.emoji}>🤗</Text>
                  <Text style={styles.subtitle}>
                   
@@ -75,7 +72,7 @@ const styles = StyleSheet.create({
     textAlign: 'center', 
     color: colors.blue,
     marginTop: 30,
-    fontFamily: fonts.heading,
+    //fontFamily: fonts.heading,
     lineHeight: 40
 
     },
@@ -84,7 +81,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     paddingHorizontal: 20,
     color: colors.blue,
-    fontFamily: fonts.heading
+   // fontFamily: fonts.heading
 
     },
     button:{

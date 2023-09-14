@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
         textAlign: 'center', 
         color: colors.blue,
         marginTop: 38,
-        fontFamily: fonts.heading,
+       // fontFamily: fonts.heading,
         lineHeight: 34
         
     },
@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         fontSize: 18,
         paddingHorizontal: 20,
         color: colors.blue,
-        fontFamily: fonts.heading
+       // fontFamily: fonts.heading
         
     },
     button:{

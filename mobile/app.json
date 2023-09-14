@@ -22,7 +22,7 @@
       "bundleIdentifier": "com.MeAlzheimer"
     },
     "android": {
-      "versionCode":2,
+      "versionCode": 2,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -46,7 +46,7 @@
     "description": "",
     "extra": {
       "eas": {
-        "projectId": "1d46815b-8007-4e55-9709-159de7ef712f"
+        "projectId": "79f205a9-2b27-4017-affd-e70e653a0220"
       }
     }
   }

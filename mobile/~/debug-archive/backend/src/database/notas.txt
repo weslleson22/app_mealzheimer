@@ -1,4 +1,0 @@
-
-Para ajudar no database vamos fazer uso do knex
-
-Docs: http://knexjs.org/guide/#node-js

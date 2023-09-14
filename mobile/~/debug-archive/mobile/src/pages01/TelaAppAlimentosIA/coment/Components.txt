@@ -1,3 +1,0 @@
-Usando API Clarifai => app123456789
-ImagePiker
-ImagemManipulator
