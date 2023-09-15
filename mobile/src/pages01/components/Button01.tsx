@@ -22,15 +22,9 @@ export function Button01({ title, ...rest }: ButtonPorps) {
 
 const styles = StyleSheet.create({
     container:  {
-        backgroundColor: colors.blue,
-        height: 56,
-        borderRadius: 16,
-        justifyContent: 'center',
+        
         alignItems: 'center'
     },
     text: {
-        fontSize: 16,
-        color: colors.white,
-        fontFamily: fonts.heading
-    }
+         }
 })

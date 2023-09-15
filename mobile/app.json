@@ -12,14 +12,18 @@
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/79f205a9-2b27-4017-affd-e70e653a0220"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.MeAlzheimer"
+      "bundleIdentifier": "com.MeAlzheimer",
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
       "versionCode": 2,
@@ -30,7 +34,8 @@
       "package": "com.sw_development.front_mealzheimer_app",
       "permissions": [
         "android.permission.RECORD_AUDIO"
-      ]
+      ],
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "favicon": "./assets/favicon.png"
