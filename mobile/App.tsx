@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-//import AppLoading from 'expo-app-loading';
+import AppLoading from 'expo-app-loading';
 import * as Notifications from 'expo-notifications';
 import './ignoreWarnings';
 import Routes  from './src/routes';
@@ -55,9 +55,9 @@ export default function App(){
      notifications();
   },[])
 
- /* if(!fontsLoaded)
+  if(!fontsLoaded)
     return <AppLoading />
-   */ 
+    
   return (
    <Routes />
     //<Welcome/>
