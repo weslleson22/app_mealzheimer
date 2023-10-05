@@ -4,22 +4,22 @@
     "slug": "front_mealzheimer_app",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon3.png",
+    "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash2.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.MeAlzheimer",
-      "runtimeVersion": {
-        "policy": "appVersion"
-      }
+      "bundleIdentifier": "com.MeAlzheimer"
     },
     "android": {
       "versionCode": 2,
@@ -27,11 +27,10 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "runtimeVersion": "1.0.0",
+      "package": "com.sw_development.front_mealzheimer_app",
       "permissions": [
         "android.permission.RECORD_AUDIO"
-      ],
-      "package": "com.wesleson.front_mealzheimer_app"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -44,9 +43,10 @@
         }
       ]
     ],
+    "description": "",
     "extra": {
       "eas": {
-        "projectId": "a187144f-051b-4bdc-bb45-8ff9641dda65"
+        "projectId": "79f205a9-2b27-4017-affd-e70e653a0220"
       }
     }
   }

@@ -68,11 +68,7 @@ export function TelaPrincipal() {
             <SvgUri width={100} height={100} uri="https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/193ecada8163d83be33876cca876bcf8a5e27426/familialogo.svg" />
             <Text style={styles.itemTitle}>Minha Familia</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.item} onPress={handlerPlants}>
-            <SvgUri width={100} height={100} uri="https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/50a5484469b7eee26488960f24f3cd10b57a8329/Minhas%20Plantas.svg" />
-            <Text style={styles.itemTitle}>Minhas Plantas</Text>
-          </TouchableOpacity>
-
+         
 
       
 
