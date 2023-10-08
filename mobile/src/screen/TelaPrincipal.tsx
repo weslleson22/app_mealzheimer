@@ -28,6 +28,11 @@ export function TelaPrincipal() {
     //navigation.
     navigate("TarefasSelect");
   }
+  function handlerCuidados() {
+    //navigation.
+    navigate("CuidadosSelect");
+  }
+ 
   function handlerEndereco() {
     //navigation.
     navigate("TelaEndereco");
@@ -83,14 +88,22 @@ export function TelaPrincipal() {
           </TouchableOpacity>
 
 
+    
+
+
 
       
 
 
         
-          <TouchableOpacity style={styles.item} onPress={handlerAlimentoIA} >
-            <SvgUri width={100} height={100} uri="https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/093c348532935c9f1b8fede5ca5f76168308d3d6/Meus_Alimentos.svg" />
-            <Text style={styles.itemTitle}>Analise Alimentos</Text>
+          <TouchableOpacity style={styles.item} onPress={handlerCuidados} >
+            <SvgUri width={100} height={100} uri="https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/e01aab1204882442b8152ad6ee124f84a2d3ef20/cuidado.svg" />
+            <Text style={styles.itemTitle}>Cuidados</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.item}>
+            <SvgUri width={100} height={100} uri="https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/3ee707d8a74261e31239b5ad8391bf0a1cc34371/jogo-para-celular.svg" />
+            <Text style={styles.itemTitle}>Jogos</Text>
           </TouchableOpacity>
 
           </View>

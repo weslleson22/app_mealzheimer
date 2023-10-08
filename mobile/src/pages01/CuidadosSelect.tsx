@@ -12,7 +12,7 @@ import fonts from "../styles/fonts";
 import AsyncStorange from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react';
 import { ScrollView } from "react-native-gesture-handler";
-export function TarefasSelect(){
+export function CuidadosSelect(){
     const navigation = useNavigation();
     type Nav = {
       navigate: (value: string) => void;
@@ -53,7 +53,7 @@ export function TarefasSelect(){
       <View style={styles.wapper}>
         <View style={styles.containerProdutor}>
         <Text style={styles.greeting}>Olá,</Text>
-        <Text style={styles.userName}>{userName} aqui você pode selecionar algumas das terefas disponivel no App</Text>
+        <Text style={styles.userName}>{userName} aqui você pode selecionar uma função de cuidados disponivel no App</Text>
         
   
   
@@ -62,15 +62,12 @@ export function TarefasSelect(){
         <ScrollView style={styles.scrollVie} showsVerticalScrollIndicator={false}>
           <View style={styles.containerProdutor3}>
          
-            <TouchableOpacity style={styles.item} onPress={handlerPlants}>
-              <SvgUri width={100} height={100} uri="https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/50a5484469b7eee26488960f24f3cd10b57a8329/Minhas%20Plantas.svg" />
-              <Text style={styles.itemTitle}>Minhas Plantas</Text>
+            <TouchableOpacity style={styles.item} onPress={handlerAlimentoIA}>
+              <SvgUri width={100} height={100} uri="https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/e01aab1204882442b8152ad6ee124f84a2d3ef20/Meus_Alimentos.svg" />
+              <Text style={styles.itemTitle}>Analise de alimentos</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.item} onPress={handlerPlants}>
-              <SvgUri width={100} height={100} uri="https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/f951321dff154ef51c358d81a8ecc9e0d7aa0aab/rotina-diaria.svg" />
-              <Text style={styles.itemTitle}>Rotinas Diarias</Text>
-            </TouchableOpacity>
+       
   
   
         
