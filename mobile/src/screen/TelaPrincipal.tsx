@@ -234,7 +234,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
   image2: {
-    marginTop: -160,
+    marginTop: -100,
     width: 120,
     height: 120,
     marginLeft: 250,

@@ -79,16 +79,23 @@ export function UserIdentification(){
                             </Text>
                             </View>
                             <TextInput
-                            style={[styles.input,
-                            (isFocused || isFilled) && 
-                            {borderColor: colors.blue}
+                            style={[
+                                styles.input,
+                                (isFocused || isFilled) && { borderColor: colors.blue }
                             ]}
-
-                            placeholder= "Digite um nome"
+                            placeholder="Digite um nome"
                             onBlur={handleInputBlur}
                             onFocus={handleInputForcus}
-                            onChangeText={handleInputChange}
+                            onChangeText={(text) => {
+                                if (text.length <= 15) {
+                                handleInputChange(text);
+                                } else {
+                                handleInputChange(text.substring(0, 15));
+                                }
+                            }}
+                            maxLength={15} // Define o número máximo de caracteres
                             />
+
 
                             <View style={styles.footer}>
 
