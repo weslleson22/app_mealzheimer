@@ -38,9 +38,9 @@ export function TelaPrincipal() {
     navigate("TelaEndereco");
   }
 
-  function handlerAlimentoIA() {
+  function handlerMemoryGame() {
     //navigation.
-    navigate("TelaAlimentos");
+    navigate("MemoryGame");
   }
 
   const [userName, setUserName] = useState<string>();
@@ -101,7 +101,7 @@ export function TelaPrincipal() {
             <Text style={styles.itemTitle}>Cuidados</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity style={styles.item} onPress={handlerMemoryGame}>
             <SvgUri width={100} height={100} uri="https://raw.githubusercontent.com/weslleson22/ImagensAppAlzheimer/3ee707d8a74261e31239b5ad8391bf0a1cc34371/jogo-para-celular.svg" />
             <Text style={styles.itemTitle}>Jogos</Text>
           </TouchableOpacity>

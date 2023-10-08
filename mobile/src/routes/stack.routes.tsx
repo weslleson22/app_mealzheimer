@@ -17,6 +17,7 @@ import {TelaPoints } from '../pages01/TelasAppEndereco/Points';
 import TelaDetail from '../pages01/TelasAppEndereco/Detail';
 import {TelaAlimentos} from '../pages01/TelaAppAlimentosIA/TelaAlimentos'
 import { CuidadosSelect } from '../pages01/CuidadosSelect';
+import { MemoryGame } from '../pages01/TelaJogos/MemoryGame';
 //import { TelaEndereco } from '../pages01/TarefasSelect1';
 //import AuthRoutes from './tab.routes';
 
@@ -92,6 +93,10 @@ const AppRoutes: React.FC = () => (
         <stackRoutes.Screen 
         name='CuidadosSelect'
         component={CuidadosSelect}
+    />
+    <stackRoutes.Screen 
+        name='MemoryGame'
+        component={MemoryGame}
     />
                   
     </stackRoutes.Navigator>
